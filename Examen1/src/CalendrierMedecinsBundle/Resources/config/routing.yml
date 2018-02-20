@@ -1,0 +1,15 @@
+calendrier_medecins_homepage:
+    path:     /
+    defaults: { _controller: CalendrierMedecinsBundle:Default:index }
+
+_ajout:
+    path:     /Ajout
+    defaults: { _controller: CalendrierMedecinsBundle:Patient:Ajout }
+
+_list:
+    path:     /List
+    defaults: { _controller: CalendrierMedecinsBundle:Patient:List }
+
+_recherche:
+    path:     /Recherche
+    defaults: { _controller: CalendrierMedecinsBundle:Patient:Recherche }

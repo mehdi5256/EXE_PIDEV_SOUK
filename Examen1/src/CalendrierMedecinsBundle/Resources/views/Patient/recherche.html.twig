@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}CalendrierMedecinsBundle:Patient:Recherche{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Patient:Recherche page</h1>
+    <form method="post">
+
+
+                 Nom  <input type="text" name="nom"> <br>
+
+
+              Prenom <input type="text" name="prenom"> <br>
+
+        <input type="submit" name="submit" value="recherhe">
+    </form>
+    <h1>La liste des Patients</h1>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>nom</th>
+            <th>prenom</th>
+            <th>date</th>
+            <th>heure</th>
+            <th>medecin</th>
+
+        </tr>
+        <tr>
+            {%for model in modeles%}
+            <td>{{ model.id }}</td>
+            <td>{{ model.nom }}</td>
+            <td>{{ model.prenom }}</td>
+            <td>{{ model.date|date }}</td>
+            <td>{{ model.heure }}</td>
+            <td>{{ model.medecin.libele }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}
