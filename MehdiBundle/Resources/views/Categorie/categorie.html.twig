@@ -1,0 +1,14 @@
+<h3 class="sidebar-title font-additional font-weight-bold text-uppercase customColor wow fadeInUp" data-wow-delay="0.3s">categories</h3>
+<ul class="categories-tree wow fadeInUp" data-wow-delay="0.3s">
+    {% for produit in categorie %}
+
+        <li>
+            <a href="{{ path('listertennis',{'categorie':produit.id}) }}" class="font-additional font-weight-normal hover-focus-color color-third text-uppercase">
+
+                <span class="pull-left">{{ produit.nomCategorie }}</span>
+                <span class="pull-right">(8)</span>
+
+            </a>
+        </li>
+    {% endfor %}
+</ul>

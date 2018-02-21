@@ -1,0 +1,87 @@
+{% extends "adminBundle:admin:layout.html.twig" %}
+
+{% block title %}Meduit{% endblock %}
+
+{% block a %}
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">Ajouter un nouveau produit</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Accueil</a></li>
+                <li class="breadcrumb-item active">AjoutProduit</li>
+            </ol>
+        </div>
+        <div class="">
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-body">
+                <form class="form-horizontal m-t-40">
+
+
+                    <div class="form-group">
+                        <label>Nom du nouveau produit</label>
+{#
+                        <input type="text"  class="form-control"  placeholder="Nom du produit">
+#}
+
+                    {{ form_widget(form.nomProduit, {'attr': {'class': 'form-control', 'placeholder': 'nom du produit'} }) }}
+
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'description du produit'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(form.categorie, {'attr': {'class': 'form-control', 'placeholder': 'choisir la categorie'} }) }}
+
+                    </div>
+                    <div class="form-group">
+                        <label>Default file upload</label>
+                        {{ form_widget(form.image, {'attr': {'class': 'form-control'} }) }}
+
+                        {#
+                                                <input type="file" class="form-control" id="exampleInputFile" aria-describedby="fileHelp">
+                        #}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">DT</span>
+                        </div>
+                        {{ form_widget(form.prix_sans_solde , {'attr': {'class': 'form-control', 'placeholder': 'prix sans solde'} }) }}
+{#
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+#}
+                        <div class="input-group-append">
+                            <span class="input-group-text">PRIX sans solde</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">DT</span>
+                        </div>
+                        {{ form_widget(form.prix, {'attr': {'class': 'form-control', 'placeholder': 'prix avec solde'} }) }}
+                        <div class="input-group-append">
+                            <span class="input-group-text">PRIX avec solde</span>
+                        </div>
+                    </div>
+                </form>
+
+                {#
+                               <center> <button type="button" class="btn waves-effect waves-light btn-rounded btn-outline-info">Info</button> </center>
+                #}
+
+              <center>{{ form_widget(form.ajouter, {'attr': {'class': 'btn waves-effect waves-light btn-rounded btn-outline-info'} }) }}</center>
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
