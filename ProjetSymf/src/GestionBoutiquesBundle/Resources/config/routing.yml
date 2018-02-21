@@ -1,0 +1,39 @@
+gestion_boutiques_homepage:
+    path:     /
+    defaults: { _controller: GestionBoutiquesBundle:Default:index }
+
+_afficher_boutiques:
+    path:     /admin/AfficherBoutiques
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:AfficherBoutiques }
+
+_supprimer_boutiques:
+    path:     /SupprimerBoutiques
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:SupprimerBoutiques }
+
+verifier_demandes:
+    path:     /admin/verifierDemandes
+    defaults: { _controller: GestionBoutiquesBundle:Admin:verifierDemandes }
+
+affecter_boutique:
+    path:     /admin/affecterBoutique
+    defaults: { _controller: GestionBoutiquesBundle:Admin:affecterBoutique }
+
+testbougalb:
+    path:     /admin/test
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:ajoutimg }
+
+espace_boutique:
+    path:     /user/espaceBoutique
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:espaceBoutique }
+
+envoi_dmde_vers_admin:
+    path:     /user/envoyerdmdeboutique
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:envoiDemande }
+
+ajout_produit_boutique:
+    path:     /user/ajouterProd
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:ajoutProduit }
+
+modifier_boutique:
+    path:     /user/modifBoutique
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:modifierBoutique }
