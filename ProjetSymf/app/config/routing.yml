@@ -1,10 +1,6 @@
-sav:
-    resource: "@SAVBundle/Resources/config/routing.yml"
-    prefix:   /
-
 gestion_boutiques:
     resource: "@GestionBoutiquesBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /boutique
 
 test:
     resource: "@TestBundle/Resources/config/routing.yml"

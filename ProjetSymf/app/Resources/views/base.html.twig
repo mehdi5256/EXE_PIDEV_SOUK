@@ -3,7 +3,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/monlogo.png">
+
     <title>{% block titre %}Souk Lemdina {% endblock %}</title> {#   Blocckkk   titre#}
+
 
     <link rel="shortcut icon" type="image/x-icon" href="" />
     <link href="{{ asset('front/css/master.css') }}" rel="stylesheet">
@@ -49,18 +52,18 @@
     </div>
     <!-- End Switcher -->
     {% block a %}
-       {% block bg %} }} <header id="header" class="paralax header" style="background-image: url({{ asset('front/media/paralax/1.jpg') }});"> {% endblock %}
+       {% block bg %} <header id="header" class="paralax header" style="background-image: url({{ asset('front/media/paralax/1.jpg') }});"> {% endblock %}
             <div class="header-top">
                 <div class="container">
                     <div class="header-container clearfix">
-                        <a href="#" class="logo pull-left"></a>
+                        <a href="/" class="logo pull-left"></a>
                         <div class="header-nav navbar navbar-main-slide pull-left">
                             <i class="fa fa-bars mobileMenuNav mobileMenuSwitcher onlyMobile"></i>
                             <nav class="menu-container">
                                 <i class="fa fa-times close-menu mobileMenuSwitcher onlyMobile"></i>
                                 <ul class="nav navbar-nav navbar-main">
                                     <li class="dropdown active">
-                                    <li><a href="#">ACCUEIL</a></li>
+                                    <li><a href="/">ACCUEIL</a></li>
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">BOUTIQUES<i class="fa fa-angle-down customColor"></i></a>
                                         <ul class="dropdown-menu">
@@ -90,12 +93,12 @@
                         </div>
                         <div class="header-right pull-right">
                             <ul class="header-right-nav">
-                                <li><a href="#" class="font-additional color-main text-uppercase hover-focus-color">
+                                <li><a href="/login" class="font-additional color-main text-uppercase hover-focus-color">
                                         {% block cnx %}
                                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
                                             <li class="dropdown my-account">
-                                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ app.user.username }}<i class="fa fa-angle-down"></i></a>
+                                                <a data-toggle="dropdown" class="dropdown-toggle" href="#" id="user"> <b>{{ app.user.username }}</b><i class="fa fa-angle-down"></i></a>
                                                 <ul role="menu" class="dropdown-menu">
                                                     <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
                                                     <li><a href="{{ path('fos_user_profile_edit') }}">Paramétres du compte</a></li>
@@ -104,7 +107,7 @@
                                                 </ul>
                                             </li>
                                 {% else %}
-                                <p>CONNEXION</p>
+                                    <p> <b>Se Connecter</b> </p>
 
                                 {% endif %}
                                         {% endblock %}
@@ -150,18 +153,25 @@
                 </div>
             </div>
             {# HINT TIP EDIT div: contenu du header#}
+        {% block txt %}
             <div class="container header-content">
+{#
                 <span class="header-subtitle font-third font-weight-light color-main wow zoomIn" data-wow-delay="3s">get upto %70 off</span>
+#}
 
             </div>
+        {% endblock %}
             <div class="header-overlay"></div>
         </header>
 
         <section id="slider" class="slider-container slider-top-pagination">
             <div class="container">
+                {% block x %}
 
+{#
                 <h2 class="title font-additional font-weight-bold text-uppercase wow zoomIn" data-wow-delay="4.3s">{% block header_content %}Bienvenue a Souk El Medina{% endblock %}</h2>
-
+#}
+{% endblock %}
                 {% block content %}
 
                 {% endblock %}
@@ -185,7 +195,9 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 clearfix wow fadeInLeft" data-wow-delay="0.3s">
                         <a href="#" class="footer-top_logo"></a>
                         <div class="footer-top_container clearfix">
-                            <span class="font-main font-weight-normal color-additional">Proin est Pellentesque risus magna vulput vitae sodales uam morbi non sem lacus por mollis. Nunc condime ntum metus eud Ino lestie. Sed consectetuer. Lorem ipsum dolor amet ectetur adipisicing elit sed doincl.</span>
+                            <span class="font-main font-weight-normal color-additional">Avec Souk_Lemdina,laissez l'Orient s'inviter chez vous !
+Nous vous proposons tous les produits du marché Tunisien... Le Souk, c'est un peu comme si vous y étiez. Au coeur de la Médina, nous sélectionnons les meilleurs articles pour vous...
+Artisanat, épices traditionnels ...</span>
                             <ul class="footer-social-list">
                                 <li><a href="#"><span class="social_facebook" aria-hidden="true"></span></a></li>
                                 <li><a href="#"><span class="social_twitter" aria-hidden="true"></span></a></li>
@@ -197,10 +209,10 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 clearfix wow fadeInUp" data-wow-delay="0.3s">
-                        <h4 class="footer-top_title color-main font-additional font-weight-bold text-uppercase">QUICK LINKS</h4>
+                        <h4 class="footer-top_title color-main font-additional font-weight-bold text-uppercase">LIENS RAPIDES</h4>
                         <div class="footer-top_container clearfix">
                             <ul class="footer-nav">
-                                <li><a href="#" class="font-main font-weight-normal color-additional"><i class="fa fa-angle-right customColor"></i> My Account</a></li>
+                                <li><a href="/profile" class="font-main font-weight-normal color-additional"><i class="fa fa-angle-right customColor"></i> Mon Compte</a></li>
                                 <li><a href="#" class="font-main font-weight-normal color-additional"><i class="fa fa-angle-right customColor"></i> Order History</a></li>
                                 <li><a href="#" class="font-main font-weight-normal color-additional"><i class="fa fa-angle-right customColor"></i> My Wishlist</a></li>
                                 <li><a href="#" class="font-main font-weight-normal color-additional"><i class="fa fa-angle-right customColor"></i> Order Tracking</a></li>
@@ -228,19 +240,19 @@
                             <ul class="footer-contact">
                                 <li class="font-main font-weight-normal color-additional">
                                     <span class="icon_pin" aria-hidden="true"></span>
-                                    23 Zevra Hall, Luton Street <br>New York 226688
+                                    {{ ad }}
                                 </li>
                                 <li class="font-main font-weight-normal color-additional oneLine">
                                     <span class="icon_phone" aria-hidden="true"></span>
-                                    +10 (987) 6541 023
+                                    {{ telephone }}
                                 </li>
                                 <li class="font-main font-weight-normal color-additional oneLine">
                                     <span class="icon_mail" aria-hidden="true"></span>
-                                    info@templines.com
+                                    {{ adresse }}
                                 </li>
                                 <li class="font-main font-weight-normal color-additional">
                                     <span class="icon_clock" aria-hidden="true"></span>
-                                    Mon to Sat : 9:25 AM - 7:30 PM <br>Sun : 11:30 PM - 4:30 PM
+                                    Lun ... Sam : 9:25  - 19:30 <br>Dim : 11:30  - 16:30
                                 </li>
                             </ul>
                         </div>
@@ -309,6 +321,11 @@
     <script src="{{ asset('front/js/wow.min.js') }}"></script>
     <script src="{{ asset('front/js/cssua.min.js') }}"></script>
     <script src="{{ asset('front/js/theme.js') }}"></script>
+    <style>
+        #user {
+            color: white;
+        }
+    </style>
     {% block javascript %} {% endblock %}
 </div>
 </body>
