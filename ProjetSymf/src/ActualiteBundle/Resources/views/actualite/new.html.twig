@@ -1,0 +1,67 @@
+{% extends "adminBundle:admin:layout.html.twig" %}
+
+{% block title %}Espace Administrateur{% endblock %}
+
+{% block a %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">Ajout d'un nouveau article</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Articles</a></li>
+                <li class="breadcrumb-item active">Ajout</li>
+            </ol>
+        </div>
+        <div class="">
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-body">
+                <form class="form-horizontal m-t-40">
+
+
+                    <div class="form-group">
+                        <label>Titre de l'article</label>
+                        {#
+                                                <input type="text"  class="form-control"  placeholder="Nom du produit">
+                        #}
+
+                        {{ form_widget(form.titre,{'attr':{'class':'form-control','placeholder':"Titre de l'article"}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contenu de l'article</label>
+                        {{ form_widget(form.contenu,{'attr':{'class':'form-control','placeholder':"Contenu de l'article"}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Image à insérer avec l'article</label>
+                        {{ form_widget(form.photo,{'attr':{'class':'form-control','placeholder':"Photo à insérer avec l'article"}}) }}
+
+                        {#
+                                                <input type="file" class="form-control" id="exampleInputFile" aria-describedby="fileHelp">
+                        #}
+                    </div>
+
+                    <center>
+                        {#<input type="submit" value=" Ajouter l'article"  class="btn btn-info"/>#}
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-plus-circle"></i>
+                            Ajouter
+                        </button>
+                    </center>
+                </form>
+
+                {{ form_end(form) }}
+        </div>
+    </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
+{% endblock %}
