@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <script>
+        function imp() {
+
+            var content = document.getElementById('pageprint').innerHTML;
+            var mywindow = window.open('', 'Print', 'height=600,width=800');
+
+            mywindow.document.write('<html><head><title> {{ actualite.titre }}</title>');
+            mywindow.document.write('</head><body >');
+
+
+
+            mywindow.document.write('<center>');
+
+
+            mywindow.document.write(content);
+
+            mywindow.document.write('</center>');
+
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close();
+            mywindow.focus();
+            mywindow.print();
+            mywindow.close();
+            return true;
+
+        }
+    </script>
+    <div class="container" id="pageprint">
+    <div class="blog blog-post">
+        <div class="blog-post_img wow slideInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: slideInUp;">
+            <div class="blog-preview_posted customBgColor">
+                <span class="blog-preview_date font-additional font-weight-bold text-uppercase color-main">{% if actualite.date %}{{ actualite.date|date('F d') }}{% endif %}</span>
+                <span class="blog-preview_comments font-additional font-weight-normal text-uppercase color-main">15 COMMENTS</span>
+            </div>
+            <img  id="photoimp" src="{{ asset(actualite.photo) }}" alt="{{ actualite.id }}" height="340px" >
+
+
+        </div>
+        <div class="blog-item_desc">
+            <div class="blog-item_header wow slideInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: slideInUp;">
+                <span class="blog-item_posted font-additional">Par</span>
+                <a class="blog-item_posted_name font-additional hover-focus-color">La Rédaction de Souk Lemdina</a >
+                <span class="blog-item_posted_sepparator"></span>
+
+            </div>
+            <div class="blog-item_body wow slideInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: slideInUp;">
+                <h3 class="font-additional font-weight-bold text-uppercase">{{ actualite.titre }}</h3>
+                <div class="blog-item_text font-main color-third">
+                    <p>{{ actualite.contenu }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <center>
+        <a href="{{ path('a_index', { 'id': actualite.id }) }}" class="btn btn-success">Retour au fil d'actualités</a>
+        <button id="imp" class="btn btn-danger" value="Imprimer" onclick="imp()"><strong><span class="icon-printer"></span> </strong>Imprimer l'article (PDF)</button>
+    </center>
+{% endblock %}
