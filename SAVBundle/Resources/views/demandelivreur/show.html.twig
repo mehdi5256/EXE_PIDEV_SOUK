@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Demandelivreur</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ demandeLivreur.id }}</td>
+            </tr>
+            <tr>
+                <th>Dateinscription</th>
+                <td>{% if demandeLivreur.dateInscription %}{{ demandeLivreur.dateInscription|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Vehicule</th>
+                <td>{{ demandeLivreur.vehicule }}</td>
+            </tr>
+            <tr>
+                <th>Disponibilite</th>
+                <td>{{ demandeLivreur.disponibilite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sav_demandeLivreur_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('sav_demandeLivreur_edit', { 'id': demandeLivreur.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

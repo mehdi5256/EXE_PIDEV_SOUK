@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Paniers list</h1>
+
+    <table id="customers">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for panier in paniers %}
+            <tr>
+                <td><a href="{{ path('SAV_Panier_show', { 'id': panier.id }) }}">{{ panier.id }}</a></td>
+                <td>{{ panier.quantite }}</td>
+                <td>{{ panier.prix }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('SAV_Panier_show', { 'id': panier.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('SAV_Panier_edit', { 'id': panier.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('SAV_Panier_new') }}">Create a new panier</a>
+        </li>
+    </ul>
+{% endblock %}

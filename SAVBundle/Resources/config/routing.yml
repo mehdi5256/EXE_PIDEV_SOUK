@@ -1,0 +1,123 @@
+sav_homepage:
+    path:     /
+    defaults: { _controller: SAVBundle:Default:index }
+
+sav_reclamation_new:
+    path:     /reclamation/new
+    defaults: { _controller: SAVBundle:Reclamation:new}
+
+sav_reclamation_index:
+    path:     /reclamation/index
+    defaults: { _controller: SAVBundle:Reclamation:index}
+
+sav_reclamation_edit:
+    path:     /reclamation/edit/{id}
+    defaults: { _controller: SAVBundle:Reclamation:edit}
+
+sav_reclamation_show:
+    path:     /reclamation/show/{id}
+    defaults: { _controller: SAVBundle:Reclamation:show}
+
+sav_reclamation_delete:
+    path:     /reclamation/delete/{id}
+    defaults: { _controller: SAVBundle:Reclamation:delete}
+
+sav_panier_new:
+    path:     /panier/new
+    defaults: { _controller: SAVBundle:Panier:new}
+
+sav_panier_index:
+    path:     /panier/index
+    defaults: { _controller: SAVBundle:Panier:index}
+
+sav_panier_edit:
+    path:     /panier/edit/{id}
+    defaults: { _controller: SAVBundle:Panier:edit}
+
+sav_panier_show:
+    path:     /panier/show/{id}
+    defaults: { _controller: SAVBundle:Panier:show}
+
+sav_panier_delete:
+    path:     /panier/delete/{id}
+    defaults: { _controller: SAVBundle:Panier:delete}
+
+sav_livraison_new:
+    path:     /livraison/new
+    defaults: { _controller: SAVBundle:Livraison:new}
+
+sav_livraison_index:
+    path:     /livraison/index
+    defaults: { _controller: SAVBundle:Livraison:index}
+
+sav_livraison_edit:
+    path:     /livraison/edit/{id}
+    defaults: { _controller: SAVBundle:Livraison:edit}
+
+sav_livraison_show:
+    path:     /livraison/show/{id}
+    defaults: { _controller: SAVBundle:Livraison:show}
+
+sav_livraison_delete:
+    path:     /livraison/delete/{id}
+    defaults: { _controller: SAVBundle:Livraison:delete}
+
+sav_FullAdress_new:
+    path:     /FullAdress/new
+    defaults: { _controller: SAVBundle:FullAdress:new}
+
+sav_FullAdress_index:
+    path:     /FullAdress/index
+    defaults: { _controller: SAVBundle:FullAdress:index}
+
+sav_FullAdress_edit:
+    path:     /FullAdress/edit/{id}
+    defaults: { _controller: SAVBundle:FullAdress:edit}
+
+sav_FullAdress_show:
+    path:     /FullAdress/show/{id}
+    defaults: { _controller: SAVBundle:FullAdress:show}
+
+sav_fullAdress_delete:
+    path:     /FullAdress/delete/{id}
+    defaults: { _controller: SAVBundle:FullAdress:delete}
+
+sav_commande_new:
+    path:     /Commande/new
+    defaults: { _controller: SAVBundle:Commande:new}
+
+sav_commande_index:
+    path:     /Commande/index
+    defaults: { _controller: SAVBundle:Commande:index}
+
+sav_commande_edit:
+    path:     /Commande/edit/{id}
+    defaults: { _controller: SAVBundle:Commande:edit}
+
+sav_commande_show:
+    path:     /Commande/show/{id}
+    defaults: { _controller: SAVBundle:Commande:show}
+
+sav_commande_delete:
+    path:     /Commande/delete/{id}
+    defaults: { _controller: SAVBundle:Commande:delete}
+
+sav_demandeLivreur_new:
+    path:     /demandeLivreur/new
+    defaults: { _controller: SAVBundle:demandeLivreur:new}
+
+sav_demandeLivreur_index:
+    path:     /demandeLivreur/index
+    defaults: { _controller: SAVBundle:demandeLivreur:index}
+
+sav_demandeLivreur_edit:
+    path:     /demandeLivreur/edit/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:edit}
+
+sav_demandeLivreur_show:
+    path:     /demandeLivreur/show/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:show}
+
+sav_demandeLivreur_delete:
+    path:     /demandeLivreur/delete/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:delete}

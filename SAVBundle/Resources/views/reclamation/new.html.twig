@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="{{ path('captcha_layout_stylesheet_url') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+{% endblock %}
+{% block content %}
+{% block body %}
+<h1 align="center">Nouvelle reclamation</h1>
+<div class="container ws-page-container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+
+            <form class="ws-login-form" name="fos_user_registration_form"> </form>
+            {{ form_start(form) }}
+
+            <div class="form-group">
+                {{ form_widget(form.sujet, { 'attr': {'class': 'form-control', 'placeholder': "Sujet" }})}}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(form.contenu, { 'attr': {'class': 'form-control', 'placeholder': "Contenu" }})}}
+            </div>
+            <br><br>
+            <div class="form-group">
+                {{ form_widget(form.captchaCode, { 'attr': {'class': 'form-control', 'placeholder': "" }})}}
+            </div>
+<br><br>
+            {{ form_rest(form)  }}
+            <input class="btn ws-btn-fullwidth" type="submit">
+
+<br><br>
+    <ul>
+        <li>
+            <a href="{{ path('SAV_reclamation_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
+{% endblock %}

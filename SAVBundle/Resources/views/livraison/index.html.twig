@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+{% block body %}
+    <h1>Livraisons list</h1>
+
+    <table id="customers">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datelivraison</th>
+                <th>Etat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        {% for livraison in livraisons %}
+            <tr>
+                <td><a href="{{ path('SAV_livraison_show', { 'id': livraison.id }) }}">{{ livraison.id }}</a></td>
+                <td>{% if livraison.dateLivraison %}{{ livraison.dateLivraison|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ livraison.etat }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('SAV_livraison_show', { 'id': livraison.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('SAV_livraison_edit', { 'id': livraison.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('SAV_livraison_new') }}">Create a new livraison</a>
+        </li>
+    </ul>
+{% endblock %}
+{% endblock %}
+
