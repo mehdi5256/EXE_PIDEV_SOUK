@@ -1,0 +1,29 @@
+{% extends "adminBundle:admin:layout.html.twig" %}
+{% block title %}Ajouter une categorie{% endblock %}
+
+{% block a %}
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">Ajouter une catégorie</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Accueil</a></li>
+                <li class="breadcrumb-item active">AjoutCategorie</li>
+            </ol>
+        </div>
+        <div class="">
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    {{ form_start(form) }}
+    {{ form_widget(form.nomCategorie, {'attr': {'class': 'form-control', 'placeholder': 'Ajouter une catégorie'} }) }}
+    <center>{{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-success '} }) }}<button type="button" class="btn btn-inverse">Cancel</button></center>
+
+
+    {{ form_end(form) }}
+    <div class="offset-sm-3 col-md-9">
+
+    </div>
+
+{% endblock %}
+
+

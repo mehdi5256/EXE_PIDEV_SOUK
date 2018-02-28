@@ -1,0 +1,67 @@
+{% extends "adminBundle:Admin:layout.html.twig" %}
+
+
+
+{% block a %}
+
+    <style>
+
+        table ,th,td
+        {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: lightsteelblue}
+
+        th {
+            background-color: midnightblue;
+            color: whitesmoke;
+        }
+        h1 {
+
+            color: white;
+        }
+        a {
+            color:deepskyblue;
+        }
+
+
+
+
+    </style>
+
+
+        <div class="container">
+            <h1>All Events</h1>
+            <table border="3" id="t">
+                <tr style="color: dodgerblue"><td>Name</td><td>Posted By</td><td>Description</td>
+                    <td>Star Date</td>
+                    <td>End Date</td>
+                    <td>Address</td>
+                    <td>Approved</td>
+                    <td>Action</td>
+                    </tr>
+                {% for event in events  %}
+                    <tr>
+                        <td>{{  event.nom   }}</td>
+                        <td>{{  event.nomorganisateur}}</td>
+                        <td>{{  event.description}}</td>
+                        <td>{{ event.dateDeb|date('d/M/Y')}} à {{ event.heuredeb|date('H-i') }}</td>
+                        <td>{{ event.datefin|date('d/M/Y')}} à {{ event.heurefin|date('H-i')}}</td>
+                        <td>{{  event.lieu}}</td>
+                        <td>{% if event.approved==0 %}En attente {% elseif event.approved==1 %}Refusé{% elseif event.approved==2 %}Approuvé{% endif %}</td>
+                        <td><a href="{{ path('approve',{'action':1,'id':event.id})}}">Réfuse</a>
+                            <a href="{{ path('approve',{'action':2,'id':event.id})}}">Approve</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    <center>
+        <div class="navigation">
+            {{ knp_pagination_render(events) }}
+        </div>
+    </center>
+{% endblock %}

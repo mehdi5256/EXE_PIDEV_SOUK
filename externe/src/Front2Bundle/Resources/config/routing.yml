@@ -1,0 +1,12 @@
+front2_homepage:
+    path:     /
+    defaults: { _controller: Front2Bundle:Default:index }
+
+
+page0:
+    path:     /page0
+    defaults: { _controller: Front2Bundle:siteweb:page0 }
+
+page1:
+    path:     /page1
+    defaults: { _controller: Front2Bundle:siteweb:page1 }

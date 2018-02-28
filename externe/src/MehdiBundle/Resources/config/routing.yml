@@ -1,0 +1,113 @@
+mehdi_homepage:
+    path:     /
+    defaults: { _controller: MehdiBundle:Default:index }
+
+_ajout_categorie:
+    path:     /AjoutCategorie
+    defaults: { _controller: MehdiBundle:Categorie:AjoutCategorie }
+
+_update_categorie:
+    path:     /UpdateCategorie{id}
+    defaults: { _controller: MehdiBundle:Categorie:UpdateCategorie }
+
+_list_categorie:
+    path:     /aa/ListCategorie
+    defaults: { _controller: MehdiBundle:Categorie:ListCategorie }
+
+delete_Categorie:
+    path:     /aa/delete{id}
+    defaults: { _controller: MehdiBundle:Categorie:Delete }
+
+_ajout_produit:
+    path:     /aa/AjoutProduit
+    defaults: { _controller: MehdiBundle:Produit:AjoutProduit }
+
+list_produit:
+    path:     /listProduit
+    defaults: { _controller: MehdiBundle:Produit:listProduit }
+
+listp:
+    path:     /aa/listp
+    defaults: { _controller: MehdiBundle:Produit:Affiche }
+
+delete_produit:
+    path:     /aa/delete{id}
+    defaults: { _controller: MehdiBundle:Produit:Delete }
+
+
+read_more:
+    path:     /readmore{id}
+    defaults: { _controller: MehdiBundle:Produit:readmore }
+
+recherche:
+    path:     /recherche
+    defaults: { _controller: MehdiBundle:Produit:Recherche }
+
+Categorie:
+    path:     /exemple
+    defaults: { _controller: MehdiBundle:Categorie:exemple }
+
+produit:
+    path:     /produit
+    defaults: { _controller: MehdiBundle:Produit:produit }
+
+accueil:
+    path:     /accueil
+    defaults: { _controller: MehdiBundle:tennis:accueil }
+
+listertennis:
+    path:     /listc{categorie}
+    defaults: { _controller: MehdiBundle:tennis:ListCategorie }
+
+
+CategorieProduit:
+    path:     /categorieproduit{categorie}
+    defaults: { _controller: MehdiBundle:Produit:categorieProduit }
+
+recherchetennis:
+    path:     /retennis
+    defaults: { _controller: MehdiBundle:tennis:Recherche }
+
+
+redirection:
+    path:     /redirection
+    defaults: { _controller: MehdiBundle:tennis:redirection }
+
+updatep:
+    path:     /updatep{id}
+    defaults: { _controller: MehdiBundle:Produit:Updatep }
+
+recherche_ajax:
+    path:     /rech_p
+    defaults: { _controller: MehdiBundle:Produit:rechercheAjax }
+
+panier:
+    path:     /panier{id}
+    defaults: { _controller: MehdiBundle:Panier:Ajout }
+
+paniersupprimer:
+    path:     /supprimer{id}
+    defaults: { _controller: MehdiBundle:Panier:Ajout }
+
+rating:
+    path:     /rating{id}
+    defaults: { _controller: MehdiBundle:Produit:Rating }
+
+
+
+xxx:
+    path:     /x
+    defaults: { _controller: MehdiBundle:tennis:x }
+
+supp:
+    path:     /supp{id}
+    defaults: { _controller: MehdiBundle:tennis:supp }
+
+solde:
+    path:     /solde
+    defaults: { _controller: MehdiBundle:tennis:solde }
+
+
+
+
+
