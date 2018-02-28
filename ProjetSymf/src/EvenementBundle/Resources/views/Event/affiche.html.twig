@@ -1,0 +1,131 @@
+{% extends "Front2Bundle:siteweb:page0.html.twig" %}
+{% block b %}
+
+    <section id="blogContent" class="blog-row">
+        <div class="container">
+
+
+            <div class="blog">
+                <div class="col-sm-3">
+                    <a href="#search" data-toggle="modal">   <div class="input-group">
+                            <input type="text" placeholder="Click to Search" id="recherche"  class="form-control search-input">
+
+                            <span class="input-group-btn">
+  <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+  </span>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+                <h2 class="title font-additional font-weight-bold text-uppercase wow zoomIn" style="visibility: visible; animation-name: zoomIn;">Souk ElMdina</h2>
+
+                <span class="subTitle font-additional font-weight-normal text-uppercase wow zoomIn" style="visibility: visible; animation-name: zoomIn;">HOME OF AMAZING Events</span>
+               <center><div class="starSeparator">
+                    <span class="icon-star" aria-hidden="true"></span>
+                   </div></center>
+              {#<center>  <ul id="filter" class="product-filter clearfix">
+                    <li>
+                        <a href="/jawaher/evenements-avenir" class="class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">WEEK EVENT</a>
+                    </li>
+                    <li>
+                        <a href="" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">read more</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('eventspasse')}}" class="btn font-additional font-weight-normal text-uppercase hover-focus-bg current" >PAST EVENT</a>
+                    </li>
+                </ul>
+              </center>#}
+
+           {# <center>
+                <ul id="filter" class="product-filter clearfix">
+            <li>
+                <a href="/jawaher/evenements-avenir" class="class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">WEEK EVENT</a>
+            </li>
+                </ul>
+            </center>
+#}
+
+            <div class="blog-item_text font-main color-third" {{ path('eventavenir') }}>  </div>
+
+            <div class="header-search">
+
+<div class="r">
+    {% for i in events %}
+
+                <div class="blog-item clearfix wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                    <a class="blog-item_img" href="detail.html.twig">
+                        <div class="blog-preview_posted customBgColor">
+                            <span class="blog-preview_date font-additional font-weight-bold text-uppercase color-main">{{ i.datedeb|date ('d/m/y') }}</span>
+                            <span class="blog-preview_comments font-additional font-weight-normal text-uppercase color-main">{{ i.lieu }}</span>
+                        </div>
+                        <img class="hvr-grow-rotate" src="{{ asset(i.image )}}" alt="Blog">
+                    </a>
+                    <div class="blog-item_desc">
+                        <div class="blog-item_header">
+                            <span class="blog-item_posted font-additional">Posted by</span>
+                            <span class="blog-item_posted_name font-additional hover-focus-color">{{ i.nomorganisateur }}</span>
+
+
+
+
+                        </div>
+                        <div class="blog-item_body">
+                            <h3 class="font-additional font-weight-bold text-uppercase">{{ i.nom }}</h3>
+
+                            <div class="blog-item_text font-main color-third">{{ i.nbrParticipants }} Participants</div>
+                            <span class="blog-item_posted font-additional"></span>
+                            <a href="{{ path('events',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">read more</a>
+
+                            <a href="{{ path('participe',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">Partipate</a>
+                        </div>
+
+
+                </div>
+
+
+
+
+
+</div>
+    {% else %}
+       <h2 style="
+               color:black;
+               font-family: Caflisch Script, Adobe Poetica, Sanvito, Ex Ponto, Snell Roundhand, Zapf-Chancery, cursive;
+               font-weight:bold;
+               text-align: center;">La liste des évenements est vide</h2>
+
+        {% endfor %}
+</div>
+        </div>
+        </div>
+        </div>
+        <center>
+        <div class="navigation">
+            {{ knp_pagination_render(events) }}
+        </div>
+        </center>
+    </section>
+<script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            $('#recherche').on('keyup', function () {
+                $search = $(this).val();
+                $.ajax({
+                    url: "{{ path('_ajax') }}",
+                    data: {'search': $search }
+                }).done(function (response) {
+                    $('.r').html(response)
+                }).catch(function (err) {
+
+                });
+            });
+        });
+
+
+    </script>
+
+
+{% endblock %}

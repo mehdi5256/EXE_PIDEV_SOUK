@@ -1,0 +1,70 @@
+{% extends "adminBundle:Admin:layout.html.twig" %}
+
+
+{% block a %}
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">ListEvent</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Events</li>
+            </ol>
+        </div>
+        <div class="col-md-7 align-self-center text-right d-none d-md-block">
+            <button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> Create New</button>
+        </div>
+        <div class="">
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    <div class="header-search">
+
+
+        {% for i in events %}
+
+            <div class="blog-item clearfix wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                <a class="blog-item_img" href="detail.html.twig">
+                    <div class="blog-preview_posted customBgColor">
+                        <span class="blog-preview_date font-additional font-weight-bold text-uppercase color-main">{{ i.datedeb|date ('d/m/y') }}</span>
+                        <span class="blog-preview_comments font-additional font-weight-normal text-uppercase color-main">{{ i.lieu }}</span>
+                    </div>
+                    <img class="hvr-grow-rotate" src="{{ asset(i.image )}}" alt="Blog">
+                </a>
+                <div class="blog-item_desc">
+                    <div class="blog-item_header">
+                        <span class="blog-item_posted font-additional">Posted by</span>
+                        <span class="blog-item_posted_name font-additional hover-focus-color">{{ i.nomorganisateur }}</span>
+
+
+
+
+                    </div>
+                    <div class="blog-item_body">
+                        <h3 class="font-additional font-weight-bold text-uppercase">{{ i.nom }}</h3>
+                        <div class="blog-item_text font-main color-third">{{ i.description }}</div>
+                        <a href="{{ path('events',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">read more</a>
+                        <a href="{{ path('delete',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">Delete</a>
+
+                        <a href="{{ path('update',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">Update</a>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+        {% else %}
+            <h2 style="
+               color:black;
+               font-family: Caflisch Script, Adobe Poetica, Sanvito, Ex Ponto, Snell Roundhand, Zapf-Chancery, cursive;
+               font-weight:bold;
+               text-align: center;">La liste des évenements est vide</h2>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
