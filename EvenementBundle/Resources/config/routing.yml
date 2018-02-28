@@ -1,0 +1,65 @@
+evenement_homepage:
+    path:     /jawaher
+    defaults: { _controller: EvenementBundle:Default:index }
+
+
+create:
+    path:     /create
+    defaults: { _controller: EvenementBundle:Event:create }
+
+affiche:
+    path:     /affiche
+    defaults: { _controller: EvenementBundle:Event:affiche }
+
+update:
+    path:     /update/{id}
+    defaults: { _controller: EvenementBundle:Event:update }
+
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: EvenementBundle:Event:delete }
+
+events:
+    path:     /detail/{id}
+    defaults: { _controller: EvenementBundle:Event:detail }
+
+participe:
+    path:     /participee/{id}
+    defaults: { _controller: EvenementBundle:Event:participe }
+
+ListParticipants:
+    path:     /liste
+    defaults: { _controller: EvenementBundle:Event:ListParticipants}
+
+Recherche_DQL_serie_parameter:
+    path:     /event
+    defaults: { _controller: EvenementBundle:Event:SearchDQLLieu }
+
+eventavenir:
+    path:     /evenements-avenir
+    defaults: { _controller: EvenementBundle:Event:Afficheeventsavenir}
+
+eventspasse:
+    path:     /evenements-passer
+    defaults: { _controller: EvenementBundle:Event:Afficheeventspasser}
+
+eventsemaine:
+    path:     /evenements-semaine
+    defaults: { _controller: EvenementBundle:Event:Afficheeventssemaine}
+
+ListAdminn:
+     path:     /list
+     defaults: { _controller: EvenementBundle:Event:Liste}
+
+Event_Best:
+    path:     /bestevent
+    defaults: { _controller: EvenementBundle:Event:BestEvent }
+
+_ajax:
+    path:     /recherche/search
+    defaults: { _controller: EvenementBundle:Event:rechercheAjax}
+
+maevent:
+    path:     /maevent
+    defaults: { _controller: EvenementBundle:Event:maevent }
+
