@@ -31,6 +31,17 @@ class FullAdressController extends Controller
         ));
     }
 
+    public function indexAdminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $fullAdresses = $em->getRepository('SAVBundle:FullAdress')->findAll();
+
+        return $this->render('SAVBundle:fulladress:indexAdmin.html.twig', array(
+            'fullAdresses' => $fullAdresses,
+        ));
+    }
+
     /**
      * Creates a new fullAdress entity.
      *
@@ -42,9 +53,11 @@ class FullAdressController extends Controller
         $fullAdress = new Fulladress();
         $form = $this->createForm('SAVBundle\Form\FullAdressType', $fullAdress);
         $form->handleRequest($request);
+        $user=$this->get('security.token_storage')->getToken()->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $fullAdress->setIdUser($user);
             $em->persist($fullAdress);
             $em->flush();
 

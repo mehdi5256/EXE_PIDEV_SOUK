@@ -2,6 +2,8 @@
 
 namespace SAVBundle\Controller;
 
+use SAVBundle\Entity\Commande;
+use SAVBundle\Entity\FullAdress;
 use SAVBundle\Entity\Livraison;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -38,21 +40,29 @@ class LivraisonController extends Controller
      * @Route("/new", name="SAV_livraison_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,$id)
     {
         $livraison = new Livraison();
-        $form = $this->createForm('SAVBundle\Form\LivraisonType', $livraison);
+        $em = $this->getDoctrine()->getManager();
+        $user=$this->get('security.token_storage')->getToken()->getUser();
+        $adresses= $em->getRepository('SAVBundle:FullAdress')->findBy(array('idUser' => $user->getId()));
+
+        $form = $this->createForm('SAVBundle\Form\LivraisonType', $livraison, array('adresses'=>$adresses));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            $commande = $em->getRepository('SAVBundle:Commande')->find($id);
+            $livraison->setCommandeRef($commande);
+            $livraison->setAdresse(FullAdress::class);
+            $livraison->setEtat("non envoyée");
             $em->persist($livraison);
             $em->flush();
 
-            return $this->redirectToRoute('SAV_livraison_show', array('id' => $livraison->getId()));
+            return $this->redirectToRoute('sav_livraison_show', array('id' => $livraison->getId()));
         }
 
-        return $this->render('SAVBundle:livraison/new.html.twig', array(
+        return $this->render('@SAV/livraison/new.html.twig', array(
             'livraison' => $livraison,
             'form' => $form->createView(),
         ));

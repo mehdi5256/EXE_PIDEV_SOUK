@@ -133,4 +133,14 @@ class CommandeController extends Controller
             ->getForm()
         ;
     }
+    public function showCommandeForLivAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user=$this->get('security.token_storage')->getToken()->getUser();
+        $commandes = $em->getRepository('SAVBundle:Commande')->findBy(array('clientRef' => $user->getId(), 'plusLivraison' => 1));
+
+        return $this->render('SAVBundle:livraison:showCommandesLivraisons.html.twig', array(
+            'commandes' => $commandes,
+        ));
+    }
 }

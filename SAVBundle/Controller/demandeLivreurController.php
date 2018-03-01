@@ -5,7 +5,8 @@ namespace SAVBundle\Controller;
 use SAVBundle\Entity\demandeLivreur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Demandelivreur controller.
@@ -31,6 +32,16 @@ class demandeLivreurController extends Controller
         ));
     }
 
+    public function indexAdminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $demandeLivreurs = $em->getRepository('SAVBundle:demandeLivreur')->findAll();
+
+        return $this->render('SAVBundle:demandelivreur:indexAdmin.html.twig', array(
+            'demandeLivreurs' => $demandeLivreurs,
+        ));
+    }
     /**
      * Creates a new demandeLivreur entity.
      *
@@ -42,16 +53,19 @@ class demandeLivreurController extends Controller
         $demandeLivreur = new Demandelivreur();
         $form = $this->createForm('SAVBundle\Form\demandeLivreurType', $demandeLivreur);
         $form->handleRequest($request);
+        $user=$this->get('security.token_storage')->getToken()->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $demandeLivreur->setClientRef($user);
+            $demandeLivreur->setDateInscription(new \DateTime('now'));
             $em->persist($demandeLivreur);
             $em->flush();
 
             return $this->redirectToRoute('sav_demandeLivreur_show', array('id' => $demandeLivreur->getId()));
         }
 
-        return $this->render('SAVBundle:demandelivreur:show.html.twig', array(
+        return $this->render('SAVBundle:demandelivreur:new.html.twig', array(
             'demandeLivreur' => $demandeLivreur,
             'form' => $form->createView(),
         ));
@@ -67,7 +81,7 @@ class demandeLivreurController extends Controller
     {
         $deleteForm = $this->createDeleteForm($demandeLivreur);
 
-        return $this->render('@SAV/demandelivreur/show.html.twig', array(
+        return $this->render('@SAV/demandelivreur/showUser.html.twig', array(
             'demandeLivreur' => $demandeLivreur,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -104,7 +118,7 @@ class demandeLivreurController extends Controller
      * @Route("/{id}", name="sav_demandeLivreur_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, demandeLivreur $demandeLivreur)
+    public function deleteAdminAction(Request $request, demandeLivreur $demandeLivreur)
     {
         $form = $this->createDeleteForm($demandeLivreur);
         $form->handleRequest($request);
@@ -115,8 +129,13 @@ class demandeLivreurController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('sav_demandeLivreur_index');
+        return $this->redirectToRoute('sav_admin_demandeLivreur_index');
     }
+    public function addToListLivreurAction()
+    {
+
+    }
+
 
     /**
      * Creates a form to delete a demandeLivreur entity.
@@ -125,6 +144,8 @@ class demandeLivreurController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
+
+
     private function createDeleteForm(demandeLivreur $demandeLivreur)
     {
         return $this->createFormBuilder()

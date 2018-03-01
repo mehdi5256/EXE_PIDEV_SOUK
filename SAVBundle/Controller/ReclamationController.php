@@ -33,6 +33,17 @@ class ReclamationController extends Controller
         ));
     }
 
+    public function indexAdminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $reclamations = $em->getRepository('SAVBundle:Reclamation')->findAll();
+
+        return $this->render('SAVBundle:reclamation:indexAdmin.html.twig', array(
+            'reclamations' => $reclamations,
+        ));
+    }
+
     /**
      * Creates a new reclamation entity.
      *
@@ -103,7 +114,7 @@ class ReclamationController extends Controller
     ));
 }
 
-    public function editReclamationAction(Request $request, Reclamation $reclamation)
+    public function editAdminAction(Request $request, Reclamation $reclamation)
     {
         $deleteForm = $this->createDeleteForm($reclamation);
         $editForm = $this->createForm('SAVBundle\Form\ReclamationType', $reclamation);
@@ -129,19 +140,44 @@ class ReclamationController extends Controller
      * @Route("/{id}", name="SAV_reclamation_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Reclamation $reclamation)
+    public function deleteAction()
     {
-        $form = $this->createDeleteForm($reclamation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+            $id=$_GET['id'];
             $em = $this->getDoctrine()->getManager();
+            $reclamation=$em->getRepository(Reclamation::class)->findBy($id);
             $em->remove($reclamation);
             $em->flush();
-        }
+            return $this->redirectToRoute('sav_admin_reclamation_index');
 
-        return $this->redirectToRoute('SAV_reclamation_index');
     }
+
+    public function adminDeleteAction()
+    {
+        $id=$_GET['id'];
+        $em = $this->getDoctrine()->getManager();
+        $reclamation=$em->getRepository(Reclamation::class)->find($id);
+        $em->remove($reclamation);
+        $em->flush();
+        return $this->redirectToRoute('sav_admin_reclamation_index');
+
+    }
+
+    public function traiterReclamationAction()
+    {
+        $id=$_GET['id'];
+        $em = $this->getDoctrine()->getManager();
+        $reclamation=$em->getRepository(Reclamation::class)->find($id);
+        if ($reclamation->getEtat()=="non traitée") {
+            $reclamation->setEtat("Traitée");
+        }else $reclamation->setEtat("non traitée");
+        $em->persist($reclamation);
+        $em->flush();
+        return $this->redirectToRoute('sav_admin_reclamation_index');
+
+    }
+
+
+
 
     /**
      * Creates a form to delete a reclamation entity.
@@ -150,6 +186,8 @@ class ReclamationController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
+
+
     private function createDeleteForm(Reclamation $reclamation)
     {
         return $this->createFormBuilder()
@@ -158,4 +196,5 @@ class ReclamationController extends Controller
             ->getForm()
         ;
     }
+
 }
