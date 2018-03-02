@@ -10,4 +10,24 @@ namespace GestionBoutiquesBundle\Repository;
  */
 class ProduitBoutiqueRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findCategoriesBoutique($unid)
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("Select DISTINCT cat.id from GestionBoutiquesBundle:ProduitBoutique prod JOIN prod.categorie cat
+              WHERE prod.boutique=:unid ")
+            //->setMaxResults(4)
+            ->setParameter('unid',$unid);
+        return $query->getResult();
+    }
+
+    public function findProduitsBoutiques($id_boutique, $valeur)
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("Select prod from GestionBoutiquesBundle:ProduitBoutique prod JOIN prod.boutique boutique
+              WHERE boutique.id=:id_boutique AND prod.nomProduit LIKE :valeur  ")
+            //->setMaxResults(4)
+            ->setParameter('id_boutique',$id_boutique)
+            ->setParameter('valeur','%'.$valeur.'%');
+        return $query->getResult();
+    }
 }

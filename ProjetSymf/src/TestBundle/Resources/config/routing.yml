@@ -5,3 +5,7 @@ test_homepage:
 redirectme:
     path:     /redirectme
     defaults: { _controller: TestBundle:RedirectionC:redirectme }
+
+testapi:
+    path:     /test
+    defaults: { _controller: TestBundle:RedirectionC:redirectme }

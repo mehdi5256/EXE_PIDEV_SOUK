@@ -4,6 +4,7 @@ namespace GestionBoutiquesBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 //use Doctrine\ORM\Mapping\OneToOne;
 
 /**
@@ -63,7 +64,6 @@ class Boutique
      * @ORM\OneToMany(targetEntity="GestionBoutiquesBundle\Entity\ProduitBoutique", mappedBy="boutique")
      */
     private $produits;
-
 
     public function __construct()
     {
@@ -233,4 +233,5 @@ class Boutique
     {
         return $this->gerant;
     }
+
 }

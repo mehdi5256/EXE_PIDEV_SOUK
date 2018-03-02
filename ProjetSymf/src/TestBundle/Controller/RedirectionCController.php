@@ -8,7 +8,14 @@ class RedirectionCController extends Controller
 {
     public function redirectmeAction()
     {
-        return $this->render('TestBundle:RedirectionC:admin.html.twig', array(
+        return $this->render('@TestBundle', array(
+            // ...
+        ));
+    }
+
+    public function testapiAction()
+    {
+        return $this->render('@TestBundle/index.html.twig', array(
             // ...
         ));
     }

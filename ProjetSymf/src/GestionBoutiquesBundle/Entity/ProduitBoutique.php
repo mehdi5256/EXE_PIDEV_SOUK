@@ -3,14 +3,14 @@
 namespace GestionBoutiquesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * ProduitBoutique
  *
  * @ORM\Table(name="produit_boutique")
  * @ORM\Entity(repositoryClass="GestionBoutiquesBundle\Repository\ProduitBoutiqueRepository")
- * @Vich\Uploadable
+ *
  */
 class ProduitBoutique
 {
@@ -65,24 +65,13 @@ class ProduitBoutique
      */
     private $description;
 
-
     /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
+     * @ORM\Column(type="string",length=255)
+     * @Assert\NotBlank(message="please upload ")
+     * @Assert\Image()
      */
+
     private $image;
-
-    /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
-     * @var File
-     */
-    private $imageFile;
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @var \DateTime
-     */
-    private $updatedAt;
 
     /**
      * Get id
@@ -239,7 +228,6 @@ class ProduitBoutique
     }
 
 
-
     /**
      * Set image
      *
@@ -263,30 +251,4 @@ class ProduitBoutique
     {
         return $this->image;
     }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return ProduitBoutique
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-
 }

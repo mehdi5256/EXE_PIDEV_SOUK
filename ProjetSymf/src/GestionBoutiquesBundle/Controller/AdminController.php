@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use TestBundle\Entity\User;
 
 class AdminController extends Controller
 {
@@ -112,5 +113,14 @@ class AdminController extends Controller
         return $this->render('GestionBoutiquesBundle:Admin:test.html.twig', array());
     }
 
+    public function testapiAction()
+    {
+        $user = new User();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
+        $em=$this->getDoctrine()->getManager();
+        $boutiques=$em->getRepository('GestionBoutiquesBundle:Boutique')->findAll();
+        return $this->render('@GestionBoutiques/Api/index.html.twig', array('user'=>$user,'boutiques'=>$boutiques));
+    }
 
 }

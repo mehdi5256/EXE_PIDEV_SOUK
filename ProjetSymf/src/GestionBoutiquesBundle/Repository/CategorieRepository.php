@@ -10,4 +10,13 @@ namespace GestionBoutiquesBundle\Repository;
  */
 class CategorieRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findCategoriesBoutiqueDQL($boutiqueid)
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("Select cat.id from GestionBoutiquesBundle:ProduitBoutique prod JOIN prod.categorie cat
+              WHERE prod.boutique=:boutiqueid ")
+            //->setMaxResults(4)
+            ->setParameter('boutiqueid',$boutiqueid);
+        return $query->getResult();
+    }
 }

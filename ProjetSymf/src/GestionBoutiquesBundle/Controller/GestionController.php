@@ -6,12 +6,13 @@ use GestionBoutiquesBundle\Entity\Boutique;
 use GestionBoutiquesBundle\Entity\Categorie;
 use GestionBoutiquesBundle\Entity\Gerant;
 use GestionBoutiquesBundle\Entity\ProduitBoutique;
+use GestionBoutiquesBundle\Form\ProduitBoutiqueType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use TestBundle\Entity\User;
 
 class GestionController extends Controller
 {
@@ -56,11 +57,6 @@ class GestionController extends Controller
         return $this->render('GestionBoutiquesBundle:Gestion:demande_boutique.html.twig', array('usr' => $usr, 'valide' => $valide));
     }*/
 
-    public function AfficherBoutiquesAction()
-    {
-
-        return $this->render('GestionBoutiquesBundle:Gestion:afficher_boutiques.html.twig', array());
-    }
 
     public function SupprimerBoutiquesAction()
     {
@@ -98,9 +94,39 @@ class GestionController extends Controller
             $boutique = new Boutique();
             $boutique = $gerant->getBoutique();
             $id_boutique = $boutique->getId();
+
+            //Selection des 3 derniers prods vendus
+            $idProdsVendu = $em->getRepository('GestionBoutiquesBundle:Commande')->findDernierProdsDQL($gerant->getBoutique()->getId());
+            $prodVendu = [];//new ProduitBoutique();
+            foreach ($idProdsVendu as $id_prod)
+            {
+                $prodVendu[]=$em->getRepository('GestionBoutiquesBundle:ProduitBoutique')->find($id_prod);
+            }
+
+
+            //BLOCK FORMULAIRE
+            $produit = new ProduitBoutique();
+
+            $form = $this->createForm(ProduitBoutiqueType::class, $produit);
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $file = $form['image']->getData();
+                $file->move('uploads/images', $file->getClientOriginalName());
+                $produit->setImage("uploads/images/" . $file->getClientOriginalName());
+                $produit->setBoutique($boutique);
+                $now = new \DateTime();
+                $produit->setDateDepot($now);
+                $em->persist($produit);
+                $em->flush();
+                return $this->redirectToRoute('espace_boutique');
+            }
+            //FIN FORMULAIRE
             return $this->render('@GestionBoutiques/Gestion/espace_boutique.html.twig', array('msg' => $msg, 'produits' => $produits,
                 'categories' => $categories, 'id_boutique' => $id_boutique,
-                'boutique' => $boutique));
+                'boutique' => $boutique,'form'=>$form->createView(),
+                'prodVendu'=>$prodVendu));
         }
         return $this->render('@GestionBoutiques/Gestion/espace_boutique.html.twig', array('msg' => $msg));
     }
@@ -172,13 +198,13 @@ class GestionController extends Controller
                         'desc_b': desc_b,
                         'lieu_b': lieu_b,
                         'id_boutique': id_boutique*/
-            $em=$this->getDoctrine()->getManager();
-            $id_boutique=$request->get('id_boutique');
+            $em = $this->getDoctrine()->getManager();
+            $id_boutique = $request->get('id_boutique');
             $boutique = new Boutique();
-            $boutique=$em->getRepository('GestionBoutiquesBundle:Boutique')->find($id_boutique);
-            $nom_b=$request->get('nom_b');
-            $desc_b=$request->get('desc_b');
-            $lieu_b=$request->get('lieu_b');
+            $boutique = $em->getRepository('GestionBoutiquesBundle:Boutique')->find($id_boutique);
+            $nom_b = $request->get('nom_b');
+            $desc_b = $request->get('desc_b');
+            $lieu_b = $request->get('lieu_b');
             $boutique->setNomBoutique($nom_b);
             $boutique->setDescription($desc_b);
             $boutique->setLieu($lieu_b);
@@ -198,20 +224,146 @@ class GestionController extends Controller
     {
         $produit = new ProduitBoutique();
 
-        if ($request->isMethod('POST')) {
-            $em=$this->getDoctrine()->getManager();
-            $file = $request->get('image')->getData();
-            $file->move('uploads/images', $file->getClientOriginalName());
+        /*if ($request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+            //$file = $request->get('image')->getData();
+            //$file->move('uploads/images', $file->getClientOriginalName());
             //$modele->setImage("uploads/images/" . $file->getClientOriginalName());
-            $produit->setImage("uploads/images/" . $file->getClientOriginalName());
+            $file = $request->get('image');
+            $produit->setImage($file);
+            //$produit->setImage("uploads/images/" . $file->getClientOriginalName());
             $produit->setDescription("testimg");
             $produit->setPrix('1000');
             $produit->setNomProduit('testimg');
+            $now = new \DateTime();
+            $produit->setDateDepot($now);
 
             $em->persist($produit);
             $em->flush();
 
+        }*/
+        $produit = new ProduitBoutique();
+
+        $form = $this->createForm(ProduitBoutiqueType::class, $produit);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $file = $form['image']->getData();
+            $file->move('uploads/images', $file->getClientOriginalName());
+            $produit->setImage("uploads/images/" . $file->getClientOriginalName());
+            $em->persist($produit);
+            $em->flush();
+            //return $this->redirectToRoute('accueil');
+            return $this->render('@GestionBoutiques/Admin/test.html.twig', array('form' => $form->createView()
+                // ...
+            ));
         }
+
         return $this->render('@GestionBoutiques/Admin/test.html.twig');
+    }
+
+    public function supprimerProduitAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $em=$this->getDoctrine()->getManager();
+            $id_prod=$request->get('id_prod');
+            $produit=$em->getRepository('GestionBoutiquesBundle:ProduitBoutique')->find($id_prod);
+
+            $em->remove($produit);
+            $em->flush();
+
+            $tab = [];
+            $ser = new Serializer(array(new ObjectNormalizer()));
+            $data = $ser->normalize($tab);
+            dump($data);
+            return new JsonResponse(array('data' => $data));
+        }
+    }
+
+    public function modifierProduitAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $em=$this->getDoctrine()->getManager();
+            $id_prod=$request->get('id_prod');
+            $nom_prod=$request->get('nom_prod');
+            $desc_prod=$request->get('description_prod');
+            $prix_prod=$request->get('prix_prod');
+            $produit=$em->getRepository('GestionBoutiquesBundle:ProduitBoutique')->find($id_prod);
+            $produit->setNomProduit($nom_prod);
+            $produit->setDescription($desc_prod);
+            $produit->setPrix($prix_prod);
+            $em->persist($produit);
+            $em->flush();
+
+            $tab = [];
+            $ser = new Serializer(array(new ObjectNormalizer()));
+            $data = $ser->normalize($tab);
+            dump($data);
+            return new JsonResponse(array('data' => $data));
+        }
+    }
+
+    public function AfficherBoutiquesAction()
+    {
+        $em=$this->getDoctrine()->getManager();
+        $gerants=$em->getRepository('GestionBoutiquesBundle:Gerant')->findAll();
+        $user = new User();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user = $this->getUser();
+        $boutiques=$em->getRepository('GestionBoutiquesBundle:Boutique')->findAll();
+
+        return $this->render('GestionBoutiquesBundle:Gestion:afficher_boutiques.html.twig', array('gerants'=>$gerants,'user'=>$user,'boutiques'=>$boutiques));
+    }
+
+    public function AfficherBoutiques2Action()
+    {
+        $em=$this->getDoctrine()->getManager();
+        $gerants=$em->getRepository('GestionBoutiquesBundle:Gerant')->findAll();
+        return $this->render('GestionBoutiquesBundle:Gestion:afficher_boutiques2.html.twig', array('gerants'=>$gerants));
+    }
+
+    public function afficherProduitsBoutiqueAction(Request $request)
+    {
+        $id_gerant = $request->get('id_gerant');
+        $em=$this->getDoctrine()->getManager();
+        $gerant = $em->getRepository('GestionBoutiquesBundle:Gerant')->find($id_gerant);
+        ///
+        /*$prods = [];
+        $prods=$gerant->getBoutique()->
+        $categories = [];*/
+        $boutiqueid=$gerant->getBoutique()->getId();
+        //$categories = $em->getRepository('GestionBoutiquesBundle:Categorie')->findCategoriesBoutiqueDQL($boutiqueid);
+        $categories = [];
+        $categories_id = $em->getRepository('GestionBoutiquesBundle:ProduitBoutique')->findCategoriesBoutique($boutiqueid);
+        foreach ($categories_id as $categorie)
+        {
+            $categories[]=$em->getRepository('GestionBoutiquesBundle:Categorie')->find($categorie);
+        }
+        ///
+        return $this->render('@GestionBoutiques/Gestion/afficher_produits.html.twig', array('gerant'=>$gerant,'categories'=>$categories));
+    }
+
+    public function rechercheAjaxAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest())
+        {
+            $em=$this->getDoctrine()->getManager();
+            $id_boutique = $request->get('id_boutique');
+            $valeur = $request->get('valeur');
+            $produits = $em->getRepository('GestionBoutiquesBundle:ProduitBoutique')->findProduitsBoutiques($id_boutique,$valeur);
+
+            /*$produits = [];
+            foreach ($id_produits as $id)
+            {
+                $produits[]=$em->getRepository('GestionBoutiquesBundle:ProduitBoutique')->find($id);
+            }*/
+
+
+            return $this->render('@GestionBoutiques/Gestion/resultats_prods_recherche_ajax.html.twig', array('produits'=>$produits));
+        }
+
     }
 }

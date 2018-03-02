@@ -3,8 +3,12 @@ gestion_boutiques_homepage:
     defaults: { _controller: GestionBoutiquesBundle:Default:index }
 
 _afficher_boutiques:
-    path:     /admin/AfficherBoutiques
+    path:     /user/AfficherBoutiques
     defaults: { _controller: GestionBoutiquesBundle:Gestion:AfficherBoutiques }
+
+_afficher_boutiques2:
+    path:     /user/AfficherBoutiques2
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:AfficherBoutiques2 }
 
 _supprimer_boutiques:
     path:     /SupprimerBoutiques
@@ -37,3 +41,39 @@ ajout_produit_boutique:
 modifier_boutique:
     path:     /user/modifBoutique
     defaults: { _controller: GestionBoutiquesBundle:Gestion:modifierBoutique }
+
+supprimer_prod:
+    path:     /user/supp_prod
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:supprimerProduit }
+
+modifier_produit:
+    path:     /user/modifProduit
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:modifierProduit }
+
+test_api:
+    path:     /testapi
+    defaults: { _controller: GestionBoutiquesBundle:Admin:testapi }
+
+afficher_prods_boutiques:
+    path:     /user/afficherProdBoutique
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:afficherProduitsBoutique }
+
+ajouter_prod_au_panier:
+    path:     /user/ajouterprodaupanier
+    defaults: { _controller: GestionBoutiquesBundle:Panier:ajoutAuPanier }
+
+afficher_panier:
+    path:     /user/affichermonpanier
+    defaults: { _controller: GestionBoutiquesBundle:Panier:afficherPanier }
+
+supprimer_du_panier:
+    path:     /user/supprimerdemonpanier
+    defaults: { _controller: GestionBoutiquesBundle:Panier:suppDeMonPanier }
+
+creer_commande:
+    path:     /user/creerCommande
+    defaults: { _controller: GestionBoutiquesBundle:Panier:creerCommande }
+
+recherche_ajax:
+    path:     /user/rechercheAjax
+    defaults: { _controller: GestionBoutiquesBundle:Gestion:rechercheAjax }

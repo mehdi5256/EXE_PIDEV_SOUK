@@ -28,6 +28,11 @@ class User extends BaseUser
      */
     private $prenom;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $addresse;
+
     public function __construct()
     {
         parent::__construct();
@@ -81,5 +86,29 @@ class User extends BaseUser
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    /**
+     * Set addresse
+     *
+     * @param string $addresse
+     *
+     * @return User
+     */
+    public function setAddresse($addresse)
+    {
+        $this->addresse = $addresse;
+
+        return $this;
+    }
+
+    /**
+     * Get addresse
+     *
+     * @return string
+     */
+    public function getAddresse()
+    {
+        return $this->addresse;
     }
 }
