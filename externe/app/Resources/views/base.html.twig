@@ -51,7 +51,6 @@
         </div>
     </div>
     <!-- End Switcher -->
-
     {% block a %}
         {% block bg %} <header id="header" class="paralax header" style="background-image: url({{ asset('front/media/paralax/1.jpg') }});"> {% endblock %}
         <div class="header-top">
@@ -72,21 +71,32 @@
                                         <li><a href="#">Visiter boutiques</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="">PRODUITS<i class="fa fa-angle-down customColor"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Déposer votre annonce</a></li>
-                                        <li><a href="">Consulter produits</a></li>
-                                    </ul>
+                                <li><a href="{{ path('accueil') }}">Espace Brocante</a></li>
+
                                 </li>
-                                <li><a href="">FAQ</a></li>
                                 <li><a href="{{ path('a_index') }}">ACTUALITES</a></li>
 
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="">EVENEMENTS<i class="fa fa-angle-down customColor"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/event/create">Créer un evenement</a></li>
-                                        <li><a href="">Consulter evenements</a></li>
+                                        <li><a href="{{ path('create') }}">Créer un evenement</a></li>
+                                        <li><a href="{{ path('affiche') }}">Consulter evenements</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="">SAV<i class="fa fa-angle-down customColor"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('sav_reclamation_new') }}">Envoyer une réclamation</a></li>
+                                        <li><a href="{{ path('sav_reclamation_index') }}">Consulter mes réclamations</a></li>
+                                        <li><a href="{{ path('sav_show_commande_liv') }}">Demander livraison</a></li>
+                                        <li><a href="{{ path('sav_livraison_show_state') }}">Etat livraison</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="">Espace livreur<i class="fa fa-angle-down customColor"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ path('sav_demandeLivreur_new') }}">Demander a être livreur</a></li>
+                                        <li><a href="{{ path('sav_livraison_livreur') }}">Gérer livraison</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -154,22 +164,6 @@
             </div>
         </div>
         {# HINT TIP EDIT div: contenu du header#}
-<style>
-    .alert {
-        z-index: 999;
-        position: relative;
-    }
-</style>
-        {% for label, flashes in app.session.flashbag.all %}
-            {% for flash in flashes %}
-                <div class="container">
-                    <div class="alert alert-{{ label }}">
-                        {{ flash }}
-                    </div>
-                </div>
-            {% endfor %}
-
-        {% endfor %}
         {% block txt %}
             <div class="container header-content">
                 {#
@@ -196,6 +190,7 @@
         </section>
 
     {% endblock %}
+
 
     {% block after_content %}
 

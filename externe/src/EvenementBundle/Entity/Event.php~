@@ -24,13 +24,6 @@ class Event
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="approved", type="integer")
-     */
-    private $approved;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Nom", type="string", length=255)
@@ -45,16 +38,18 @@ class Event
     private $description;
 
     /**
+     * @var \DateTime
      *
      * @ORM\Column(name="DateDeb", type="date")
-     *      
-     * @Assert\GreaterThan("today",message="Le date de debut doit etre bl bla")
      */
     private $dateDeb;
 
     /**
      * @ORM\Column(name="date_fin",type="datetime")
-     *
+     * @Assert\Expression(
+     *    "this.getDateFin() > this.getDateDeb()",
+     *    message="La date fin de l'evenement  doit etre supérieure à la date début"
+     * )
      */
     private $dateFin;
 
@@ -118,10 +113,6 @@ class Event
 
     private $nomuser;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="event")
-     */
-    private $comment;
     /**
      * Get id
      *
@@ -399,18 +390,6 @@ class Event
         return $this->idu;
     }
 
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-
-    public function getComment()
-    {
-        return $this->comment;
-    }
     /**
      * Set nomuser
      *

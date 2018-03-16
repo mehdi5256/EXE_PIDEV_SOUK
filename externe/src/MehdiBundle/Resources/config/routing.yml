@@ -77,9 +77,9 @@ updatep:
     path:     /updatep{id}
     defaults: { _controller: MehdiBundle:Produit:Updatep }
 
-recherche_ajax:
-    path:     /rech_p
-    defaults: { _controller: MehdiBundle:Produit:rechercheAjax }
+
+
+
 
 panier:
     path:     /panier{id}
@@ -108,6 +108,12 @@ solde:
     defaults: { _controller: MehdiBundle:tennis:solde }
 
 
+recherche_ajax:
+    path:     /rech_p
+    defaults: { _controller: MehdiBundle:Produit:rechercheAjax }
 
+admin_ajax:
+    path:     /ajax_admin
+    defaults: { _controller: MehdiBundle:Produit:ajaxAdmin }
 
 

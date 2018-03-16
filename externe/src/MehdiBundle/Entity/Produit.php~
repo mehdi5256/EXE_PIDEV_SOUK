@@ -70,6 +70,18 @@ class Produit
      */
     private $rating;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="produits")
+     */
+
+    private $ratings;
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -232,7 +244,28 @@ class Produit
         $this->rating = $rating;
     }
 
+    /**
+     * Set solde
+     *
+     * @param integer $solde
+     *
+     * @return Produit
+     */
+    public function setSolde($solde)
+    {
+        $this->solde = $solde;
 
+        return $this;
+    }
 
+    /**
+     * Get solde
+     *
+     * @return integer
+     */
+    public function getSolde()
+    {
+        return $this->solde;
+    }
 
 }

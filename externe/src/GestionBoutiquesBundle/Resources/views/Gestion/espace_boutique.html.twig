@@ -1,0 +1,344 @@
+{% extends "::base.html.twig" %}
+
+ {% block title %} Espace boutique {% endblock %}
+{% block header_content %}
+    Espace de gestion de votre boutique
+{% endblock %}
+
+{% block content %}
+    <br><br>
+    {% if msg=='' %}
+        <div class="container">
+            <div class="row">
+                <div class="sidebar col-lg-3 col-md-3 col-sm-3 col-xs-12 clearfix">
+                    <h3 class="sidebar-title font-additional font-weight-bold text-uppercase customColor wow fadeInUp freff"
+                        data-wow-delay="3.3s">MENU</h3>
+                    <ul class="categories-tree wow fadeInUp" data-wow-delay="0.3s">
+                        <li>
+                            <a id="bt_ajouter"
+                               href="#"
+                               class="font-additional font-weight-normal hover-focus-color color-third text-uppercase">
+                                <span class="pull-left">Ajouter produits</span>
+                                {#<span class="pull-right">(8)</span>#}
+                            </a>
+                        </li>
+                        <li>
+                            <a id="bt_modifier"
+                               href="#"
+                               class="font-additional font-weight-normal hover-focus-color color-third text-uppercase">
+                                <span class="pull-left">Modifier boutique</span>
+                                {#<span class="pull-right">(19)</span>#}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               class="font-additional font-weight-normal hover-focus-color color-third text-uppercase">
+                                <span class="pull-left">Consulter statistiques</span>
+                                {#<span class="pull-right">(9)</span>#}
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""
+                               class="font-additional font-weight-normal hover-focus-color color-third text-uppercase">
+                                <span class="pull-left">Historique des ventes</span>
+                                {#<span class="pull-right">(7)</span>#}
+                            </a>
+                        </li>
+                        <li>
+                            <a id="bt_produits"
+                               href=""
+                               class="font-additional font-weight-normal hover-focus-color color-third text-uppercase">
+                                <span class="pull-left">VOS PRODUITS</span>
+                                {#<span class="pull-right">(5)</span>#}
+                            </a>
+                        </li>
+                    </ul>
+                    <h3 class="sidebar-title font-additional font-weight-bold text-uppercase customColor wow fadeInUp"
+                        data-wow-delay="0.3s">Dernier produits vendus</h3>
+                    <ul class="sidebar-popular-product wow fadeInUp" data-wow-delay="0.3s">
+                        <li>
+                            <a class="popular-product-item" href="">
+                                <img src="" alt="Product">
+                                <span class="popular-product-item_title font-additional font-weight-bold text-uppercase">MEN shirts</span>
+                                <span class="popular-product-item_price font-additional color-third">$105.00</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="popular-product-item" href="">
+                                <img src="" alt="Product">
+                                <span class="popular-product-item_title font-additional font-weight-bold text-uppercase">women wear</span>
+                                <span class="popular-product-item_price font-additional color-third">$350.00</span>
+                                <span class="product-item_sale color-main font-additional customBgColor circle">-5%</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="popular-product-item" href="">
+                                <img src="" alt="Product">
+                                <span class="popular-product-item_title font-additional font-weight-bold text-uppercase">bags & packs</span>
+                                <span class="popular-product-item_price font-additional color-third">$240.00</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 clearfix">
+
+                    {% if produits is empty %}
+                        <div class="alert alert-danger">
+                            <center><strong>Vous n'avez pas de produit dans votre boutique</strong></center>
+                        </div>
+                        <br>
+                        {#{% else %}
+                            <p>Vos produits.</p>#}
+                    {% endif %}
+                    <div class="esp-aff products-cat clearfix">
+                        {#  ============= MODIF BOUTIQUE ========================#}
+                        <div id="form_modif" class="contenu">
+                            <div class="form-group half-wigth pull-left">
+                                <p>Nom</p>
+                                <input id="nom_b"
+                                       type="text"
+                                       class="reply-field font-additional font-weight-normal color-third text-uppercase"
+                                       placeholder="NOM"
+                                       value="{{ boutique.nomBoutique }}">
+                            </div>
+                            <p>Description</p>
+                            <div class="form-group half-wigth pull-left">
+                                <input id="description_b"
+                                       type="text"
+                                       class="reply-field font-additional font-weight-normal color-third text-uppercase"
+                                       placeholder="DESCRIPTION"
+                                       value="{{ boutique.description }}">
+                            </div>
+                            <p>Lieu</p>
+                            <div class="form-group half-wigth pull-left">
+                                <input id="lieu_b"
+                                       type="text"
+                                       class="reply-field font-additional font-weight-normal color-third text-uppercase"
+                                       placeholder="Lieu"
+                                       value="{{ boutique.lieu }}">
+                            </div>
+                            <p>Date</p>
+                            <div class="form-group half-wigth pull-left">
+                                <input id="date_b"
+                                       type="text"
+                                       class="reply-field font-additional font-weight-normal color-third text-uppercase"
+                                       disabled
+                                       value="{{ boutique.dateCeation|date('D/M/Y') }}">
+                            </div>
+                            <input id="id_boutique" type="hidden" value="{{ id_boutique }}">
+                            <button id="modifier"
+                                    class="accepter btn btn-white font-additional font-weight-bold hvr-shutter-out-horizontal before-bg">
+                                Enregistrer modifications
+                            </button>
+                            <br><br>
+                        </div>
+                        {#  ======================================================#}
+
+                        {#  ================= AJOUT PROD ========================#}
+                        <div id="form" class="contenu">
+                            <div class="form-group half-wigth pull-left">
+                                <input id="nom_p"
+                                       type="text"
+                                       class="reply-field font-additional font-weight-normal color-third text-uppercase"
+                                       placeholder="NOM">
+                            </div>
+                            <div class="form-group half-wigth pull-left">
+                                <input id="description_p"
+                                       type="text"
+                                       class="reply-field font-additional font-weight-normal color-third text-uppercase"
+                                       placeholder="DESCRIPTION">
+                            </div>
+                            <div class="form-group half-wigth pull-left">
+                                <input id="prix_p"
+                                       type="text"
+                                       class="reply-field font-additional font-weight-normal color-third text-uppercase"
+                                       placeholder="PRIX">
+                            </div>
+
+                            <div class="form-group half-wigth pull-left">
+                                <select id="categorie_p"
+                                        class="reply-field font-additional font-weight-normal color-third text-uppercase">
+                                    {% for categorie in categories %}
+                                        <option value="{{ categorie.id }}">{{ categorie.nom }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <input id="id_boutique" type="hidden" value="{{ id_boutique }}">
+                            <button id="ajouter"
+                                    class="accepter btn btn-white font-additional font-weight-bold hvr-shutter-out-horizontal before-bg">
+                                Ajouter produit
+                            </button>
+                            <br><br>
+                        </div>
+                        {#=============== FIN AJOUT ======================================#}
+                        {##}
+                        {##}
+                        <ul id="liste_produits" class="products-grid contenu">
+
+                            <!-- ONE PRODUCT STARTS HERE -->
+                                {% for produit in produits %}
+                                    <li class="wow fadeInUp" data-wow-delay="0.3s">
+                                        <div class="product-item hvr-underline-from-center">
+                                            <div class="product-item_body">
+                                                <img class="product-item_image"
+                                                     src="{{ asset('assets/img/about/team-2.jpg') }}" alt="Product">
+                                                <a class="product-item_link" href="">
+                                                    <span class="product-item_sale color-main font-additional customBgColor circle">-15%</span>
+                                                </a>
+                                                <ul class="product-item_info transition">
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-bag" aria-hidden="true"></span>
+                                                            <div class="product-item_tip font-additional font-weight-normal text-uppercase customBgColor color-main transition">
+                                                                ADD TO CART
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-eye" aria-hidden="true"></span>
+                                                            <div class="product-item_tip font-additional font-weight-normal text-uppercase customBgColor color-main transition">
+                                                                QUICK VIEW
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="icon-heart" aria-hidden="true"></span>
+                                                            <div class="product-item_tip font-additional font-weight-normal text-uppercase customBgColor color-main transition">
+                                                                Add to Favorites
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="" class="product-item_footer">
+                                                <div class="product-item_title font-additional font-weight-bold text-center text-uppercase">
+                                                    WOMEN GOWN
+                                                </div>
+                                                <div class="product-item_price font-additional font-weight-normal customColor">
+                                                    $240.00 <span>$265.00</span></div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            <!-- ONE PRODUCT ENDS HERE-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {{ msg }}
+    {% endif %}
+    <script>
+        $(document).ready(function () {
+            $('#form').hide();
+            $('#form_modif').hide();
+        });
+        /*=====================*/
+        $('#bt_ajouter').click(function () {
+            $('.contenu').hide(500);
+            $('#form').toggle(1000);
+        });
+        /*=====================================*/
+        $('#bt_modifier').click(function () {
+            $('.contenu').hide(500);
+            $('#form_modif').toggle(1500);
+        });
+        /*======================================*/
+        $("#bt_produits").click(function (e) {
+            $('.contenu').hide(500);
+            $('#liste_produits').toggle(1500);
+        });
+        /*========== MODIF BOUTIQUE ===========*/
+        $("#modifier").click(function () {
+                //var dmde = 'dm' + this.id;
+                var nom_b = $('#nom_b').val();
+                var desc_b = $('#description_b').val();
+                var lieu_b = $('#lieu_b').val();
+                var id_boutique = $('#id_boutique').val();
+                $.ajax({
+                    url: '{{ path('modifier_boutique') }}',
+                    type: 'POST',
+                    data: {
+                        'nom_b': nom_b,
+                        'desc_b': desc_b,
+                        'lieu_b': lieu_b,
+                        'id_boutique': id_boutique
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#form_modif').after(
+                            '<div id="succ_m" class="alert alert-success">'
+                            + '<center><strong>'
+                            + 'Les données de votre boutique ont été mis a jour.'
+                            + '</strong></center>'
+                            + '</div>')
+                        $('#succ_m').hide(0).slideDown(500).delay(2000).slideUp(500);
+                    },
+                    error: function (data) {
+                        $('#form_modif').after(
+                            '<div id="err" class="alert alert-danger">'
+                            + '<center><strong>'
+                            + 'Erreur lors de la modification.'
+                            + '</strong></center>'
+                            + '</div>')
+                        $('#err').hide(0).show(1500).delay(1000).hide(1500);
+                    }
+                })
+
+            }
+        );
+        /*======== AJAX AJOUT PROD==========*/
+        $("#ajouter").click(function () {
+                //var dmde = 'dm' + this.id;
+                var nom_p = $('#nom_p').val();
+                var desc_p = $('#description_p').val();
+                var prix_p = $('#prix_p').val();
+                var id_categorie = $('#categorie_p').val();
+                var id_boutique = $('#id_boutique').val();
+                $.ajax({
+                    url: '{{ path('ajout_produit_boutique') }}',
+                    type: 'POST',
+                    data: {
+                        'nom_p': nom_p,
+                        'desc_p': desc_p,
+                        'prix_p': prix_p,
+                        'id_categorie': id_categorie,
+                        'id_boutique': id_boutique
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#form').after(
+                            '<div id="succ" class="alert alert-success">'
+                            + '<center><strong>'
+                            + 'Produit ajouté avec succés'
+                            + '</strong></center>'
+                            + '</div>')
+                        $('#succ').hide(0).slideDown(500).delay(2000).slideUp(500);
+                    },
+                    error: function (data) {
+                        $('#form').after(
+                            '<div id="err" class="alert alert-danger">'
+                            + '<center><strong>'
+                            + 'Erreur lors de l\'ajout'
+                            + '</strong></center>'
+                            + '</div>')
+                        $('#err').hide(0).show(1500).delay(1000).hide(1500);
+                    }
+                })
+
+            }
+        );
+
+        $("a").click(function (e) {
+            e.preventDefault()
+        });
+
+    </script>
+{% endblock %}
+
+{#===========================================#}

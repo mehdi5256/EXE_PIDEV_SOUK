@@ -1,0 +1,39 @@
+<div class="searching">
+    {% for actualite in actualites  %}
+
+        <div class="blog-item clearfix wow fadeInLeft" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInRight;">
+            <a class="blog-item_img" href="{{ path('a_show',{'id':actualite.id}) }}">
+                <div class="blog-preview_posted customBgColor">
+                    <span class="blog-preview_date font-additional font-weight-bold text-uppercase color-main">{% if actualite.date %}{{ actualite.date|date('d F') }}{% endif %}</span>
+                    <span class="blog-preview_comments font-additional font-weight-normal text-uppercase color-main">15 COMMENTS</span>
+                </div>
+                <img class="hvr-grow-rotate" src="{{ asset(actualite.photo) }}" alt="Blog">
+            </a>
+            <div class="blog-item_desc">
+                <div class="blog-item_header">
+                    <span class="blog-item_posted font-additional">Par</span>
+                    <a href="{{ path('a_index') }}" class="blog-item_posted_name font-additional hover-focus-color">La rédaction de Souk Lemdina</a>
+                    <span class="blog-item_posted_sepparator"></span>
+
+                </div>
+                <div class="blog-item_body">
+                    <h3 class="font-additional font-weight-bold text-uppercase">{{ actualite.titre }}</h3>
+
+                    <a href="{{ path('a_show',{'id':actualite.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">Affciher la suite</a>
+                </div>
+            </div>
+        </div>
+</div>
+
+    {% else %}
+        <div class="alert-secondary">
+            <h1><center><strong>Article inexistant</strong></center></h1>
+        </div>
+
+
+    {% endfor %}
+
+
+
+
+

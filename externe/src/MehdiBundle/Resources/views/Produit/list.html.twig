@@ -3,11 +3,11 @@
 {% block title %}list les produits{% endblock %}
 {% block a %}
 
-
     <div class="purple-table">
         <div class="color-table">
             <div class="table-responsive">
-                <input id="recherche" type="text">
+                <input type="text" class="form-control" id="recherche" placeholder="Entrer le nom du produit" name="search">
+
                 <div id="t" name="t">
                 </div>
             <table class="table full-color-table full-primary-table hover-table">
@@ -21,12 +21,12 @@
                     <th>Prix avec solde</th>
                     <th>Ratings</th>
                     <th>Action</th>
-
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="r">
                 {% for model in modeles %}
-                    <td>{{ model.id }}</td>
+                <tr>
+                  <td>{{ model.id }}</td>
                     <td>{{ model.nomProduit  }}</td>
                     <td>{{ model.categorie.nomCategorie }}</td>
                     <td><img src="{{ asset('') }}{{ model.image }}" style="height: 50px; width: 50px;"> </td>
@@ -38,7 +38,8 @@
                         <a href="{{ path('supp',{'id':model.id}) }}" data-toggle="tooltip" data-original-title="Supprimer"> <i class="fa fa-close text-danger"></i> </a>
                     </td>
 
-                    </tr>
+                </tr>
+
                 {% endfor %}
                 </tbody>
             </table>
@@ -54,27 +55,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
 
     <script>
-        $("#recherche").keyup(function () {
-                var requete = $('#recherche').val();
+        $(document).ready(function () {
+            $('#recherche').on('keyup', function () {
+                $search = $(this).val();
                 $.ajax({
-                    url: '{{ path('recherche_ajax') }}',
-                    type: 'POST',
-                    data: {'requete': requete},
-                    dataType: 'json',
-                    success: function (data) {
+                    url: "{{ path('admin_ajax') }}",
+                    data: {'search': $search }
+                }).done(function (response) {
+                    $('.r').html(response)
+                }).catch(function (err) {
 
-                        $.each(data, function (i,e) {
-                            console.log(e.prix);
-                            $('#t').alert(e.prix)
-                        })
-                    },
-                    error: function (data) {
-                        alert('error');
-                    }
-                })
+                });
+            });
+        });
 
-            }
-        );
     </script>
 
 {% endblock %}

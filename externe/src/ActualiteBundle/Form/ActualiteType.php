@@ -18,9 +18,6 @@ class ActualiteType extends AbstractType
     {
         $builder
             ->add('titre',TextType::class)
-//            ->add('date',\Symfony\Component\Form\Extension\Core\Type\DateType::class,array(
-//                'widget'=>'single_text'
-//            ))
             ->add('contenu',TextareaType::class)
             ->add('photo',FileType::class, array(
                 'label' => 'Photo',

@@ -88,13 +88,25 @@
                         <div class="product-item_price font-additional font-weight-normal customColor">{{ produit.prix }} DT <span>{{ produit.prixsanssolde }} DT</span></div>
                         <ul class="rating">
 
+
                             {{ produit.rating|rating(5, "fa-x") }}
 
-                            {#<li><span aria-hidden="true" class="icon-star customColor"></span></li>
-                            <li><span aria-hidden="true" class="icon-star customColor"></span></li>
-                            <li><span aria-hidden="true" class="icon-star customColor"></span></li>
-                            <li><span aria-hidden="true" class="icon-star customColor"></span></li>
-                            <li><span aria-hidden="true" class="icon-star color-additional"></span></li>#}
+                                {#{% set total = produit.ratings.count %}
+                                {% set somme = 0 %}
+					            {% for ratingz in produit.ratings %}
+                                    {%   set somme = somme + ratingz.rating %}
+                                {% endfor %}
+                                Rating: {{ somme/total }}#}
+
+								{#<ul class="rating">
+								<li><a href="#" class="rate" id="1"><span aria-hidden="true" class="icon-star color-additional"></span></a></li>
+								<li><a href="#" class="rate" id="2"><span aria-hidden="true" class="icon-star color-additional"></span></a></li>
+								<li><a href="#" class="rate" id="3"><span aria-hidden="true" class="icon-star color-additional"></span></a></li>
+								<li><a href="#" class="rate" id="4"><span aria-hidden="true" class="icon-star color-additional"></span></a></li>
+								<li><a href="#" class="rate" id="5"><span aria-hidden="true" class="icon-star color-additional"></span></a></li>
+								<input type="hidden" class="prod_id" value="{{ produit.id }}">
+								</ul>
+                        </ul>#}
                         </ul>
                     </div>
                     <div class="product-options_body clearfix wow fadeInUp" data-wow-delay="0.3s">
@@ -118,10 +130,10 @@
                             </div>
                             <a href="{{ path('panier',{'id':produit.id}) }}"  class="btn button-additional button-big font-additional font-weight-normal text-uppercase hvr-rectangle-out hover-focus-bg before-bg">
                                 <span class="icon-basket" aria-hidden="true"></span>
-                                add to cart
+                                Commander
                             </a>
                         </div>
-                        <div class="product-options_row">
+                        {#<div class="product-options_row">
                             <ul class="product-links">
                                 <li>
                                     <a href="#" class="font-additional font-weight-normal hover-focus-color">
@@ -136,7 +148,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>#}
                     </div>
                     <div class="product-options_footer clearfix wow fadeInUp" data-wow-delay="0.3s">
                         <div class="product-options_row">
@@ -189,7 +201,29 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
  {% endblock %}
+{#<script>
+    $('.rate').click(function () {
+        var rate = Number(this.id);
+        var id_prod = $(this).find('.prod_id').val();
+        $.ajax({
+            url: '{{ path('rating_ajax') }}',
+            type: 'POST',
+            data: {
+                'rate': rate,
+                'id_prod':id_prod,
+                'user_id': {{ app.user.id }}
+            },
+            dataType: 'json',
+            success: function (data) {
+                //alert('success');
+                console.log(data);
 
+            }
+        })
+    });
+
+
+</script>#}
 
 <!-- Mirrored from templines.rocks/html/sokolcov/7store/category-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Feb 2018 08:35:25 GMT -->
 {% endblock %}

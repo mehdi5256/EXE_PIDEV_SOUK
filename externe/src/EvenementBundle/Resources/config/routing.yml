@@ -47,12 +47,10 @@ eventsemaine:
     path:     /evenements-semaine
     defaults: { _controller: EvenementBundle:Event:Afficheeventssemaine}
 
-ListEvent:
-     path:     admin/list
+ListAdminn:
+     path:     /list
      defaults: { _controller: EvenementBundle:Event:Liste}
-approve:
-     path:     admin/approveevent/{action}/{id}
-     defaults: { _controller: EvenementBundle:Event:Approve}
+
 Event_Best:
     path:     /bestevent
     defaults: { _controller: EvenementBundle:Event:BestEvent }
@@ -60,10 +58,3 @@ Event_Best:
 _ajax:
     path:     /recherche/search
     defaults: { _controller: EvenementBundle:Event:rechercheAjax}
-
-maevent:
-    path:     /maevent
-    defaults: { _controller: EvenementBundle:Event:maevent }
-delete_comment:
-    path:     /delete_comment/{id}/{id_event}
-    defaults: { _controller: EvenementBundle:Event:deleteComment }

@@ -33,11 +33,6 @@ class User extends BaseUser
      */
     private $prenom;
 
-    /**
-     * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\Comment", mappedBy="evenement")
-     */
-    private $comment;
-
     public function __construct()
     {
         parent::__construct();

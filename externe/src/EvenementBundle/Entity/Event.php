@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints as Assert ;
 
 /**
- * Event
+ * Event-
  *
  * @ORM\Table(name="Event")
  * @ORM\Entity(repositoryClass="EvenementBundle\Repository\EventRepository")
@@ -24,13 +24,6 @@ class Event
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="approved", type="integer")
-     */
-    private $approved;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Nom", type="string", length=255)
@@ -45,16 +38,18 @@ class Event
     private $description;
 
     /**
+     * @var \DateTime
      *
      * @ORM\Column(name="DateDeb", type="date")
-     *      
-     * @Assert\GreaterThan("today",message="Le date de debut doit etre bl bla")
      */
     private $dateDeb;
 
     /**
      * @ORM\Column(name="date_fin",type="datetime")
-     *
+     * @Assert\Expression(
+     *    "this.getDateFin() > this.getDateDeb()",
+     *    message="La date fin de l'evenement  doit etre supérieure à la date début"
+     * )
      */
     private $dateFin;
 
@@ -113,15 +108,11 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="nomuser", type="string", length=255,nullable=true)
+     * @ORM\Column(name="nomuser", type="string", length=255)
      */
 
     private $nomuser;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="event")
-     */
-    private $comment;
     /**
      * Get id
      *
@@ -399,18 +390,6 @@ class Event
         return $this->idu;
     }
 
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-
-    public function getComment()
-    {
-        return $this->comment;
-    }
     /**
      * Set nomuser
      *
@@ -460,53 +439,5 @@ class Event
     public function getParticipate()
     {
         return $this->participate;
-    }
-
-    /**
-     * Set approved
-     *
-     * @param integer $approved
-     *
-     * @return Event
-     */
-    public function setApproved($approved)
-    {
-        $this->approved = $approved;
-
-        return $this;
-    }
-
-    /**
-     * Get approved
-     *
-     * @return integer
-     */
-    public function getApproved()
-    {
-        return $this->approved;
-    }
-
-    /**
-     * Add comment
-     *
-     * @param \EvenementBundle\Entity\Comment $comment
-     *
-     * @return Event
-     */
-    public function addComment(\EvenementBundle\Entity\Comment $comment)
-    {
-        $this->comment[] = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Remove comment
-     *
-     * @param \EvenementBundle\Entity\Comment $comment
-     */
-    public function removeComment(\EvenementBundle\Entity\Comment $comment)
-    {
-        $this->comment->removeElement($comment);
     }
 }

@@ -59,7 +59,7 @@ class Produit
     private $prix;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="produits")
      * @ORM\JoinColumn(name="categorie_id",referencedColumnName="id")
      */
     private $categorie;
@@ -69,6 +69,11 @@ class Produit
      * @ORM\Column(name="rating",type="integer" )
      */
     private $rating;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="produits")
+     */
 
     /**
      * Get id
@@ -232,10 +237,6 @@ class Produit
         $this->rating = $rating;
     }
 
-
-
-
-
     /**
      * Set solde
      *
@@ -259,4 +260,7 @@ class Produit
     {
         return $this->solde;
     }
+
+
+
 }

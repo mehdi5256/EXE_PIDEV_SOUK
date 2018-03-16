@@ -1,0 +1,178 @@
+sav_homepage:
+    path:     /
+    defaults: { _controller: SAVBundle:Default:index }
+
+
+sav_reclamation_new:
+    path:     /reclamation/new
+    defaults: { _controller: SAVBundle:Reclamation:new}
+
+sav_reclamation_index:
+    path:     /reclamation/index
+    defaults: { _controller: SAVBundle:Reclamation:index}
+
+sav_admin_reclamation_index:
+    path:     /admin/reclamation/index
+    defaults: { _controller: SAVBundle:Reclamation:indexAdmin}
+
+sav_reclamation_edit:
+    path:     /reclamation/edit/{id}
+    defaults: { _controller: SAVBundle:Reclamation:edit}
+
+sav_admin_reclamation_edit:
+    path:     /admin/reclamation/edit/{id}
+    defaults: { _controller: SAVBundle:Reclamation:editAdmin}
+
+sav_reclamation_show:
+    path:     /reclamation/show/{id}
+    defaults: { _controller: SAVBundle:Reclamation:show}
+
+sav_reclamation_delete:
+    path:     /reclamation/delete/{id}
+    defaults: { _controller: SAVBundle:Reclamation:delete}
+
+
+sav_livraison_new:
+    path:     /livraison/new/{id}
+    defaults: { _controller: SAVBundle:Livraison:new}
+
+sav_livraison_index:
+    path:     /livraison/index
+    defaults: { _controller: SAVBundle:Livraison:index}
+
+sav_livraison_livreur:
+    path:     /livraison/livreur
+    defaults: { _controller: SAVBundle:Livraison:showToLivreur}
+
+sav_livraison_livreur_enroute_vendeur:
+    path:     /livraison/enroutevendeur/{id}
+    defaults: { _controller: SAVBundle:Livraison:editEnRouteVendeur}
+
+sav_livraison_livreur_enroute_client:
+    path:     /livraison/enrouteclient/{id}
+    defaults: { _controller: SAVBundle:Livraison:editEnRouteClient}
+
+sav_livraison_livreur_arrivee:
+    path:     /livraison/arrivee/{id}
+    defaults: { _controller: SAVBundle:Livraison:editArrivee}
+
+sav_livraison_livreur_valide:
+    path:     /livraison/valide/{id}
+    defaults: { _controller: SAVBundle:Livraison:editValide}
+
+
+sav_livraison_edit:
+    path:     /livraison/edit/{id}
+    defaults: { _controller: SAVBundle:Livraison:edit}
+
+sav_livraison_show:
+    path:     /livraison/show/{id}
+    defaults: { _controller: SAVBundle:Livraison:show}
+
+sav_livraison_show_state:
+    path:     /livraison/showState
+    defaults: { _controller: SAVBundle:Livraison:showLivState}
+
+sav_livraison_delete:
+    path:     /livraison/delete/{id}
+    defaults: { _controller: SAVBundle:Livraison:delete}
+
+
+sav_FullAdress_new:
+    path:     /FullAdress/new/{id}
+    defaults: { _controller: SAVBundle:FullAdress:new}
+
+sav_FullAdress_index:
+    path:     /FullAdress/index
+    defaults: { _controller: SAVBundle:FullAdress:index}
+
+sav_admin_FullAdress_index:
+    path:     /admin/FullAdress/index
+    defaults: { _controller: SAVBundle:FullAdress:indexAdmin}
+
+sav_FullAdress_edit:
+    path:     /FullAdress/edit/{id}
+    defaults: { _controller: SAVBundle:FullAdress:edit}
+
+sav_FullAdress_show:
+    path:     /FullAdress/show/{id}
+    defaults: { _controller: SAVBundle:FullAdress:show}
+
+sav_fullAdress_delete:
+    path:     /FullAdress/delete/{id}
+    defaults: { _controller: SAVBundle:FullAdress:delete}
+
+
+sav_commande_new:
+    path:     /Commande/new
+    defaults: { _controller: SAVBundle:Commande:new}
+
+sav_commande_index:
+    path:     /Commande/index
+    defaults: { _controller: SAVBundle:Commande:index}
+
+sav_commande_edit:
+    path:     /Commande/edit/{id}
+    defaults: { _controller: SAVBundle:Commande:edit}
+
+sav_commande_show:
+    path:     /Commande/show/{id}
+    defaults: { _controller: SAVBundle:Commande:show}
+
+sav_commande_delete:
+    path:     /Commande/delete/{id}
+    defaults: { _controller: SAVBundle:Commande:delete}
+
+
+sav_demandeLivreur_new:
+    path:     /demandeLivreur/new
+    defaults: { _controller: SAVBundle:demandeLivreur:new}
+
+sav_demandeLivreur_index:
+    path:     /demandeLivreur/index
+    defaults: { _controller: SAVBundle:demandeLivreur:index}
+
+sav_admin_demandeLivreur_index:
+    path:     /admin/demandeLivreur/index
+    defaults: { _controller: SAVBundle:demandeLivreur:indexAdmin}
+
+
+sav_demandeLivreur_edit:
+    path:     /demandeLivreur/edit/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:edit}
+
+sav_demandeLivreur_show:
+    path:     /demandeLivreur/show/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:show}
+
+sav_demandeLivreur_activate:
+    path:     /demandeLivreur/activate/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:activateLivreur}
+
+sav_demandeLivreur_disable:
+    path:     /demandeLivreur/disable/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:disableLivreur}
+
+sav_demandeLivreur_delete:
+    path:     /admin/demandeLivreur/delete/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:deleteAdmin}
+
+sav_show_commande_liv:
+    path:     /showcommandeliv
+    defaults: { _controller: SAVBundle:Commande:showCommandeForLiv}
+
+sav_demandeLivreur_delete:
+    path:     /admin/demandeLivreur/delete/{id}
+    defaults: { _controller: SAVBundle:demandeLivreur:deleteAdmin}
+
+sav_admin_reclamation_delete:
+    path:     /admin/reclamation/delete
+    defaults: { _controller: SAVBundle:Reclamation:adminDelete }
+
+sav_admin_reclamation_traiter:
+    path:     /admin/reclamation/traiter
+    defaults: { _controller: SAVBundle:Reclamation:traiterReclamation }
+
+sav_admin_reclamation_answer:
+    path:     /admin/reclamation/answer/{id}
+    defaults: { _controller: SAVBundle:Reclamation:answerReclamation}

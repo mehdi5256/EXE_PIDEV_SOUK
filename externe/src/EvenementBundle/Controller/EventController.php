@@ -4,7 +4,6 @@ namespace EvenementBundle\Controller;
 
 use EvenementBundle\Entity\Event;
 use EvenementBundle\Entity\Participer;
-use EvenementBundle\Entity\Comment;
 use EvenementBundle\EvenementBundle;
 use EvenementBundle\Form\EventType;
 use EvenementBundle\Form\RechercheType;
@@ -28,30 +27,25 @@ class EventController extends Controller
             ->add('datedeb',DateType::class, array('widget'=>'single_text'))
             ->add('datefin',DateType::class,array('widget'=>'single_text'))
             ->add('lieu',TextType::class)
-
+            ->add('nomorganisateur',TextType::class)
             ->add('heuredeb',TimeType::class)
             ->add('heurefin',TimeType::class)
             ->add('image',FileType::class)
             ->add('save',SubmitType::class)
             ->getForm();
-        $user = $this->getUser();
-        $username= $user->getUsername();
-        $idu = $user->getId();
+
          $form->handleRequest($request);
          if($form->isValid())
         { $file = $form['image']->getData();
-        $event->setNomOrganisateur($username);
-        $event->setIdu($idu);
             $event = $form->getData();
             $file->move('uploads/images/',$file->getClientOriginalName());
             $event->setImage("uploads/images/".$file->getClientOriginalName());
-            $event->setApproved(0);
             $event = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('success', "Votre Evenement est en attente de lacceptation par le moderateur");
-            return $this->redirectToRoute("homepage");
+
+            return $this->redirectToRoute("affiche");
         }
 
         return $this->render('EvenementBundle:Event:create.html.twig', array(
@@ -62,7 +56,7 @@ class EventController extends Controller
     public function afficheAction(Request $request)
     {
         $em=$this->getDoctrine()->getManager();
-        $listevents = $em->getRepository('EvenementBundle:Event')->findBy(array('approved'=>2));
+        $listevents = $em->getRepository('EvenementBundle:Event')->findAll();
         $events  = $this->get('knp_paginator')->paginate($listevents,
             $request->query->get('page', 1)/*page number*/,
             3/*limit per page*/
@@ -71,58 +65,16 @@ class EventController extends Controller
 
     }
 
-    public function detailAction(Request $request,$id)
+    public function detailAction($id)
     {
         $em=$this->getDoctrine()->getManager();
-        $events= $em->getRepository(event::class)->findOneBy(array('id'=>$id,'approved'=>2));
-        $comment = new Comment();
-        $form_comment = $this->createForm('EvenementBundle\Form\CommentType', $comment);
-
-        $form_comment->handleRequest($request);
-
-        $user_=$this->getUser();
-
-
-        if ($form_comment->isSubmitted() && $form_comment->isValid()) {
-
-            $comment->setUser($user_);
-
-            $comment->setCreatedAt(new \DateTime('now'));
-
-            $comment->SetEvent($events);
-
-            $em->persist($comment);
-
-            $em->flush();
-
-
-            return $this->redirectToRoute('events', array('id' => $events->getId()));
-        }
-
-
-
-
+        $events= $em->getRepository(event::class)->find($id);
         return $this->render('EvenementBundle:Event:detail.html.twig', array(
-            'events'=>$events,
-            'form_comment'=>$form_comment->createView()
+            'events'=>$events
         ));
     }
-    public function ApproveAction($action,$id){
-        $em=$this->getDoctrine()->getManager();
-        $event= $em->getRepository(Event::class)->find($id);
-        if($action==1|$action==2) {
-            $event->setApproved($action);
-            $em->flush();
-        }
-        return $this->redirectToRoute('ListEvent');
-    }
-     public function deleteCommentAction($id,$id_event){
-         $em=$this->getDoctrine()->getManager();
-         $comment= $em->getRepository(Comment::class)->find($id);
-         $em->remove($comment);
-         $em->flush();
-         return $this->redirectToRoute('events', array('id' =>$id_event));
-     }
+
+
     public function updateAction(Request $request,$id){
 
             $event = new Event();
@@ -244,7 +196,6 @@ class EventController extends Controller
     }
 
 
-
     function  AfficheeventssemaineAction(Request $request)
     {
         $em=$this->getDoctrine()->getManager();
@@ -256,7 +207,6 @@ class EventController extends Controller
         return $this->render('EvenementBundle:Event:eventsemaine.html.twig',array('events'=>$events));
 
     }
-
 
     function ListeAction(Request $request)
     {
@@ -288,7 +238,6 @@ class EventController extends Controller
         // return new Response("Bonjour");
     }
 
-
     public function SearchDQLAction()
     {
         $em=$this->getDoctrine();
@@ -297,7 +246,6 @@ class EventController extends Controller
             'events'=>$events
         ));
     }
-
 
     function BestEventAction()
     {
@@ -308,9 +256,9 @@ class EventController extends Controller
     }
 
 
+
     public function rechercheAjaxAction(Request $request)
     {
-
         $em=$this->getDoctrine()->getManager();
 
         if ($request->isXmlHttpRequest()) {
@@ -322,18 +270,7 @@ class EventController extends Controller
             return $this->render('EvenementBundle:Event:component.html.twig', array('events' => $event));
         }
 
+
     }
-
-
-    public function maeventAction()
-    {
-        $user = $this->getUser();
-        $idb = $user->getId();
-      $events= $this->getDoctrine()->getManager()->getRepository(Event::class)
-            ->findBy(array('idu'=>$idb,'approved'=>2));
-
-        return $this->render('EvenementBundle:Event:maevent.html.twig', array('events' => $events));
-    }
-
 
 }

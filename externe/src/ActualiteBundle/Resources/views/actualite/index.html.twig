@@ -1,27 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+<center>
+    <div class="col-sm-auto">{% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('actualite_admin_homepage') }}" class="btn btn-success">Espace Administrateur</a>
+        {% endif %}</div>
+</center>
+        <div class="col-sm-6">
+             <a href="#search" data-toggle="modal">   <div class="input-group">
+                <input type="text" placeholder="Rechercher" id="recherche"  class="form-control search-input">
 
-
-    <form action="{{ path('a_recherche') }}?chose=" class="form-horizontal group-border-dashed" novalidate="">
-        <div class="form-group">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <input  placeholder="Recherche" name="chose" class="form-control" data-parsley-id="28" type="text">
-            </div>
+            <span class="input-group-btn"></span>
         </div>
-    </form>
+            </a>
+            </div>
 
     <div class="container">
         <div class="blog blog-additional">
-
+            <div class="searching">
         {% for actualite in actualites  %}
 
             <div class="blog-item clearfix wow fadeInLeft" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInRight;">
                 <a class="blog-item_img" href="{{ path('a_show',{'id':actualite.id}) }}">
                     <div class="blog-preview_posted customBgColor">
                         <span class="blog-preview_date font-additional font-weight-bold text-uppercase color-main">{% if actualite.date %}{{ actualite.date|date('d F') }}{% endif %}</span>
-                        <span class="blog-preview_comments font-additional font-weight-normal text-uppercase color-main">15 COMMENTS</span>
+                        <span class="blog-preview_comments font-additional font-weight-normal text-uppercase color-main">TUNISIE</span>
                     </div>
                     <img class="hvr-grow-rotate" src="{{ asset(actualite.photo) }}" alt="Blog">
                 </a>
@@ -41,7 +44,34 @@
             </div>
 
             {% endfor %}
-
+        </div>
         </div>
     </div>
-{% endblock content %}
+    <center>
+        <div class="navigation">
+            {{ knp_pagination_render(actualites) }}
+        </div>
+    </center>
+
+    <script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+        <script>
+
+
+            $(document).ready(function () {
+                $('#recherche').on('keyup', function () {
+                    $search = $(this).val();
+                    $.ajax({
+                        url: "{{ path('a_recherche') }}",
+                        data: {'search': $search }
+                    }).done(function (response) {
+                        $('.searching').html(response)
+                    }).catch(function (err) {
+
+                    });
+                });
+            });
+
+
+        </script>
+
+        {% endblock content %}

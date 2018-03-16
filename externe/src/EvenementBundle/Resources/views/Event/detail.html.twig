@@ -1,13 +1,15 @@
-{% extends "Front2Bundle:siteweb:page0.html.twig" %}
-{% block b %}
+{% extends 'base.html.twig' %}
+
+{% block content %}
 
 
     <div class="container">
-        <br><br><br>
-        <h2 class="title font-additional font-weight-bold text-uppercase wow zoomIn" style="visibility: visible; animation-name: zoomIn; text-shadow: 2px 2px #FF0000 ;">Detail Event</h2>
-        <center><div class="starSeparator">
-                <span class="icon-star" aria-hidden="true"></span>
-            </div></center>
+        <h1 style="
+                          color:darkorange;
+                          font-family: Caflisch Script, Adobe Poetica, Sanvito, Ex Ponto, Snell Roundhand, Zapf-Chancery, cursive;
+                          font-weight:bold;
+                          text-align: center;"
+        > Event Detail</h1>
         <div class="blog blog-post">
             <div class="blog-post_img wow slideInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: slideInUp;">
                 <div class="blog-preview_posted customBgColor">
@@ -34,35 +36,41 @@
 
                         <div class="important-text customBorderColor">{{ events.description }}</div>
 
-
+                    </div>
                     <div class="blog-item_body">
                     <a href="{{ path('delete',{'id':events.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">Delete</a>
 
                     <a href="{{ path('update',{'id':events.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">Update</a>
                     </div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <center>
                     <div>
                         {{ socialButtons() }}
 
                     </div>
-                    </center>
-                    <br><br><br><br>
+
                 </div>
 
-<br><br><br><br>
-      {{ form_start(form_comment) }}
-                {{ form_end(form_comment) }}
-                {% for comment in events.comment %}
-                    {% if app.user.id==comment.user.id %}<a class="pull-right" href="{{ path('delete_comment',{'id':comment.id,'id_event':events.id}) }}"><i class="fa fa-times"></i></a>{% endif %}
-                    <p><i class="fa fa-clock-o"> {{comment.createdAt|date('Y-m-d')}}</i>
-                        <i class="fa fa-user" > {{comment.user.nom~' '~comment.user.prenom}}</i></p>
-                    <p><i class="fa fa-comment"> {{comment.content}}</i></p>
-                    <hr>
-                {% endfor %}
+                <div class="reply wow slideInUp" data-wow-delay="0.3s" style="visibility: hidden; animation-delay: 0.3s; animation-name: none;">
+                    <h3 class="font-additional font-weight-bold text-uppercase">leave a reply</h3>
+                    <div id="success"></div>
+                    <form novalidate="" id="contactForm" class="reply-form form-inline">
+                        <div class="form-group half-wigth pull-left">
+                            <label class="sr-only" for="user-name">NAME</label>
+                            <input type="text" class="reply-field font-additional font-weight-normal color-third text-uppercase" id="user-name" placeholder="NAME">
+                        </div>
+                        <div class="form-group half-wigth pull-right">
+                            <label class="sr-only" for="user-email">EMAIL</label>
+                            <input type="email" class="reply-field font-additional font-weight-normal color-third text-uppercase" id="user-email" placeholder="EMAIL">
+                        </div>
+                        <div class="form-group full-width pull-left">
+                            <label class="sr-only" for="user-message">COMMENTS</label>
+                            <textarea class="reply-field font-additional font-weight-normal color-third text-uppercase" id="user-message" placeholder="COMMENTS"></textarea>
+                        </div>
+
+
+                        <button type="submit" class="btn button-border font-additional font-weight-normal hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">send comment</button>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>

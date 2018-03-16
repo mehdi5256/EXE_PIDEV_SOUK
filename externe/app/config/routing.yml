@@ -1,3 +1,11 @@
+gestion_boutiques:
+    resource: "@GestionBoutiquesBundle/Resources/config/routing.yml"
+    prefix:   /boutique
+
+sav:
+    resource: "@SAVBundle/Resources/config/routing.yml"
+    prefix:   /sav
+
 actualite:
     resource: "@ActualiteBundle/Resources/config/routing.yml"
     prefix:   /actualite
@@ -9,10 +17,6 @@ evenement:
 mehdi:
     resource: "@MehdiBundle/Resources/config/routing.yml"
     prefix:   /mehdi
-
-front2:
-    resource: "@Front2Bundle/Resources/config/routing.yml"
-    prefix:   /front
 
 
 admin:

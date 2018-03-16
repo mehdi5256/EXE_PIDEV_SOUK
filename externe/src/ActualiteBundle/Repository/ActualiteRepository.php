@@ -10,14 +10,15 @@ namespace ActualiteBundle\Repository;
  */
 class ActualiteRepository extends \Doctrine\ORM\EntityRepository
 {
-
-    function recherche($valeur){
-        $query = ActualiteRepository::createQueryBuilder('e')
-            ->where('UPPER(e.titre) LIKE UPPER(:valeur)')
-            ->orWhere('UPPER(e.contenu) Like UPPER(:valeur)')
-            ->setParameter('valeur', '%'.$valeur.'%')
+    public function findActualite($search)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('UPPER(e.titre) LIKE UPPER(:search)')
+            ->orWhere('UPPER(e.contenu) Like UPPER(:search)')
+            ->setParameter('search', '%'.$search.'%')
             ->orderBy('e.date', 'DESC')
-            ->getQuery();
-        return $query->getResult();
+            ->getQuery()
+            ->getResult();
+
     }
 }

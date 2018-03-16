@@ -1,0 +1,23 @@
+<table class="table full-color-table full-primary-table hover-table">
+
+
+    <tbody class="r">
+{% for model in modeles %}
+    <tr>
+        <td>{{ model.id }}</td>
+        <td>{{ model.nomProduit  }}</td>
+        <td>{{ model.categorie.nomCategorie }}</td>
+        <td><img src="{{ asset('') }}{{ model.image }}" style="height: 50px; width: 50px;"> </td>
+        <td>{{ model.prixsanssolde }} DT</td>
+        <td>{{ model.prix }} DT</td>
+        <td>{{ model.rating|rating(5, "fa-x") }}</td>
+        <td class="text-nowrap">
+            <a href="{{ path('updatep',{'id':model.id}) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+            <a href="{{ path('supp',{'id':model.id}) }}" data-toggle="tooltip" data-original-title="Supprimer"> <i class="fa fa-close text-danger"></i> </a>
+        </td>
+
+    </tr>
+
+{% endfor %}
+</tbody>
+</table>

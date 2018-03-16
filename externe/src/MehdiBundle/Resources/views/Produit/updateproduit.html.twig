@@ -2,46 +2,8 @@
 {% block a %}
     {{ form_start(form) }}
 
-    <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="{{ asset('a.css') }}">
-        <style>
-        </style>
-    </head>
-    <body>
-    <center>
-        <h1>Mise a jour d'une voiture </h1>
-        <hr>
-        <br>
-        {{ form_start(form) }}
-        <fieldset>
-            <legend> Modifier </legend>
-            <table border="1">
-                <tr>
-                    <th>Serie</th>
-                    <td>{{ form_widget(form.nomProduit) }}</td>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <td>{{ form_widget(form.prix) }}</td>
-                </tr>
-                <tr>
-                    <th>Marque</th>
-                    <td>{{ form_widget(form.description) }}</td>
-                </tr>
 
-            </table>
-            {{ form_widget(form.ajouter) }}
-        </fieldset>
-        {{ form_widget(form.ajouter) }}
+     {{ form_end(form) }}
 
 
-        {{ form_end(form) }}
-
-
-    </center>
-    </body>
-    </html>
-
-    {{ form_end(form) }}
 {% endblock %}

@@ -6,19 +6,11 @@
 
             var content = document.getElementById('pageprint').innerHTML;
             var mywindow = window.open('', 'Print', 'height=600,width=800');
-
-            mywindow.document.write('<html><head><title> {{ actualite.titre }}</title>');
+            mywindow.document.write('<html><head><title></title>');
             mywindow.document.write('</head><body >');
-
-
-
             mywindow.document.write('<center>');
-
-
             mywindow.document.write(content);
-
             mywindow.document.write('</center>');
-
             mywindow.document.write('</body></html>');
 
             mywindow.document.close();
@@ -34,7 +26,7 @@
         <div class="blog-post_img wow slideInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: slideInUp;">
             <div class="blog-preview_posted customBgColor">
                 <span class="blog-preview_date font-additional font-weight-bold text-uppercase color-main">{% if actualite.date %}{{ actualite.date|date('F d') }}{% endif %}</span>
-                <span class="blog-preview_comments font-additional font-weight-normal text-uppercase color-main">15 COMMENTS</span>
+                <span class="blog-preview_comments font-additional font-weight-normal text-uppercase color-main">TUNISIE</span>
             </div>
             <img  id="photoimp" src="{{ asset(actualite.photo) }}" alt="{{ actualite.id }}" height="340px" >
 

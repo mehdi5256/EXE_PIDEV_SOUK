@@ -23,15 +23,16 @@ a_delete:
     defaults: { _controller: "ActualiteBundle:Actualite:delete" }
     methods:  [GET, POST]
 
+a_manipulation:
+    path:     /admin/manipulation
+    defaults: { _controller: "ActualiteBundle:Actualite:manipulation" }
+    methods:  GET
+
 a_recherche:
     path:     /recherche
     defaults: { _controller: "ActualiteBundle:Actualite:recherche" }
     methods:  GET
 
-a_manipulation:
-    path:     /admin/manipulation
-    defaults: { _controller: "ActualiteBundle:Actualite:manipulation" }
-    methods:  GET
 
 
 

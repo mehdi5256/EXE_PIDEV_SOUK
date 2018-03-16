@@ -1,5 +1,6 @@
-{% extends "Front2Bundle:siteweb:page0.html.twig" %}
-{% block b %}
+{% extends 'base.html.twig' %}
+
+{% block content %}
 
     <section id="blogContent" class="blog-row">
         <div class="container">
@@ -18,28 +19,23 @@
                 </div>
 
             </div>
-                <h2 class="title font-additional font-weight-bold text-uppercase wow zoomIn" style="visibility: visible; animation-name: zoomIn; text-shadow: 2px 2px #FF0000 ;">Souk ElMdina</h2>
+                <h2 class="title font-additional font-weight-bold text-uppercase wow zoomIn" style="visibility: visible; animation-name: zoomIn;">Souk ElMdina</h2>
 
                 <span class="subTitle font-additional font-weight-normal text-uppercase wow zoomIn" style="visibility: visible; animation-name: zoomIn;">HOME OF AMAZING Events</span>
                <center><div class="starSeparator">
                     <span class="icon-star" aria-hidden="true"></span>
                    </div></center>
-
-
-              <center>
-                   <div class="d-inline-block">
+              <center>  <ul id="filter" class="product-filter clearfix">
+                    <li>
                         <a href="{{ path('eventsemaine')}}" class="btn font-additional font-weight-normal text-uppercase hover-focus-bg" >WEEK EVENT</a>
-
-
+                    </li>
+                    <li>
                         <a href={{ path('eventavenir')}}}" class="btn font-additional font-weight-normal text-uppercase hover-focus-bg" >EVENT DISCOVER</a>
-
+                    </li>
+                    <li>
                         <a href="{{ path('eventspasse')}}" class="btn font-additional font-weight-normal text-uppercase hover-focus-bg current" >PAST EVENT</a>
-                   </div>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
+                    </li>
+                </ul>
               </center>
 
 
@@ -69,14 +65,20 @@
                             <h3 class="font-additional font-weight-bold text-uppercase">{{ i.nom }}</h3>
 
                             <div class="blog-item_text font-main color-third">{{ i.nbrParticipants }} Participants</div>
-                            <span class="blog-item_posted font-additional"></span>
-                            <a href="{{ path('events',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">read more</a>
 
-                            <a href="{{ path('participe',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">Partipate</a>
+
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                                <span class="blog-item_posted font-additional"></span>
+                                <a href="{{ path('events',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">read more</a>
+                                <a href="{{ path('participe',{'id':i.id}) }}" class="btn button-border font-additional font-weight-bold hvr-rectangle-out hover-focus-bg hover-focus-border before-bg">Partipate</a>
+                            {% else %}
+
+
+                            {% endif %}
+
                         </div>
-
-
-                </div>
+                    </div>
 
 
 

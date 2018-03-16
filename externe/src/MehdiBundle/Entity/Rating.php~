@@ -24,21 +24,24 @@ class Rating
     /**
      * @var int
      *
-     * @ORM\Column(name="rating", type="integer")
+     * @ORM\Column(name="rating", type="integer", nullable= true)
      */
     private $rating;
-    /**
-     * Many Features have One Product.
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User", inversedBy="Rating")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
-     */
-    private $users;
+
     /**
      * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="Produit", inversedBy="Rating")
      * @ORM\JoinColumn(name="Produit_id", referencedColumnName="id",onDelete="CASCADE")
      */
+
     private $produits;
+
+    /**
+     * Many Features have One Product.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Rating")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $users;
 
 
     /**
@@ -75,33 +78,5 @@ class Rating
         return $this->rating;
     }
 
-
-    /**
-     * Set produits
-     *
-     * @param \MehdiBundle\Entity\Produit $produits
-     *
-     * @return Rating
-     */
-    public function setProduits(\MehdiBundle\Entity\Produit $produits = null)
-    {
-        $this->produits = $produits;
-
-        return $this;
-    }
-
-    /**
-     * Get produits
-     *
-     * @return \MehdiBundle\Entity\Produit
-     */
-    public function getProduits()
-    {
-        return $this->produits;
-    }
-
-
 }
-    /**
 
-}

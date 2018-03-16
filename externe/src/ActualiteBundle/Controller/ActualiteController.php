@@ -8,23 +8,28 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ActualiteController extends Controller
 {
-    public function indexAction()
+
+
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em=$this->getDoctrine()->getManager();
         $currentDate = Date('Y-m-d H:i:s');
-        $newdate = strtotime ( '-3 day' , strtotime ( $currentDate ) ) ; // substract 3 days from date
+        $newdate = strtotime ( '-3 day' , strtotime ( $currentDate ) ) ;
         $newdate = date ( 'Y-m-j' , $newdate );
-        $actualites = $em->getRepository('ActualiteBundle:Actualite')->createQueryBuilder('e')
+
+        $list = $em->getRepository('ActualiteBundle:Actualite')->createQueryBuilder('e')
             ->addORderBy('e.date', 'DESC')
             ->andWhere('e.date BETWEEN :from AND :to')
             ->setParameter('from', $newdate  )
             ->setParameter('to', $currentDate)
             ->getQuery()
             ->execute();
+        $actualites  = $this->get('knp_paginator')->paginate($list,
+            $request->query->get('page', 1)/*page number*/,
+            3/*limit per page*/
+        );
+        return $this->render('ActualiteBundle:Actualite:index.html.twig',array('actualites'=>$actualites));
 
-        return $this->render('@Actualite/actualite/index.html.twig', array(
-            'actualites' => $actualites,
-        ));
     }
 
     public function manipulationAction()
@@ -51,7 +56,7 @@ class ActualiteController extends Controller
             $file = $actualite->getPhoto();
 
             $fileName = md5(uniqid('', true)).'.'.$file->guessExtension();
-            $path = "C:\wamp64\www\\externe\web" ;
+            $path = "C:\wamp64\\www\\externe\\web" ;
             $file->move(
                 $path,
                 $fileName
@@ -87,21 +92,21 @@ class ActualiteController extends Controller
 
     public function editAction(Request $request, Actualite $actualite)
     {
-        $photo=$actualite->getPhoto(); //sajaelet el taswira loula
+        $photo=$actualite->getPhoto();
         $deleteForm = $this->createDeleteForm($actualite);
         $editForm = $this->createForm('ActualiteBundle\Form\ActualiteType', $actualite);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $file = $actualite->getPhoto(); // el taswira el jdida mta3 el form
+            $file = $actualite->getPhoto();
             if ($file !=""){
             $fileName = md5(uniqid('', true)).'.'.$file->guessExtension();
-            $path = "C:/wamp64/www/ProjetSymf/web" ;
+            $path = "C:\wamp64\www\\externe\web" ;
             $file->move(
                 $path,
                 $fileName
             );
-                $photo=$fileName;//ecraser el taswira la9dima bel taswira el jdida
+                $photo=$fileName;
             }
             $actualite->setPhoto($photo);
             $em = $this->getDoctrine()->getManager();
@@ -140,16 +145,22 @@ class ActualiteController extends Controller
         ;
     }
 
-    
-    
-    public function rechercheAction(Request $request){
+
+    public function rechercheAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
-        $actualites = $em->getRepository('ActualiteBundle:Actualite')->recherche($_GET['chose']);
+
+        if ($request->isXmlHttpRequest()) {
+            $search = $request->get('search');
+            dump($search);
+            $actualite = new Actualite();
+            $repo= $em->getRepository('ActualiteBundle:Actualite');
+            $actualite = $repo->findActualite($search);
+            return $this->render('ActualiteBundle:actualite:search.html.twig', array('actualites' => $actualite));
+        }
 
 
-        return $this->render('@Actualite/actualite/index.html.twig', array(
-            'actualites' => $actualites,
 
-        ));
     }
+
 }

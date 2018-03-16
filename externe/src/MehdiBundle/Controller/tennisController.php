@@ -43,7 +43,7 @@ class tennisController extends Controller
         $paginator = $this->get('knp_paginator');
         $modeles = $paginator->paginate($modeles, $a->query->get('page', 1)/*page number*/, 3/*limit per page*/
         );
-        return $this->render('MehdiBundle:tennis:accueil.html.twig', array('modeles' => $modeles));
+        return $this->render('MehdiBundle:tennis:ajax.html.twig', array('modeles' => $modeles));
     }
 
     public function RechercheAction(Request $c)

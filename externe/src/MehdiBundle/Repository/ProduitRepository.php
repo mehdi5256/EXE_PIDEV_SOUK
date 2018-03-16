@@ -20,14 +20,24 @@ class ProduitRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+
     public function findProduitDQL($serie)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.nomProduit LIKE :nom')
+            ->setParameter('nom','%'.$serie.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /*public function findProduitDQL($serie)
     {
         $query=$this->getEntityManager()
             ->createQuery("Select p from MehdiBundle:Produit p 
               where p.nomProduit =:serie")
             ->setParameter('serie',$serie);
         return $query->getResult();
-    }
+    }*/
 
     public function findArray($array)
     {
@@ -42,7 +52,7 @@ class ProduitRepository extends \Doctrine\ORM\EntityRepository
         $query=$this->getEntityManager()
             ->createQuery("Select p from MehdiBundle:Produit p 
               ORDER BY p.rating DESC ")
-        ->setMaxResults(3);
+        ->setMaxResults(5);
 
         return $query->getResult();
     }
@@ -60,6 +70,7 @@ class ProduitRepository extends \Doctrine\ORM\EntityRepository
     {
         $query=$this->getEntityManager()
             ->createQuery("Select p from MehdiBundle:Produit p 
+              WHERE (p.solde >0)
               ORDER BY p.solde DESC ")
             ->setMaxResults(5);
 

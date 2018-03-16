@@ -57,5 +57,4 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
-
 }
