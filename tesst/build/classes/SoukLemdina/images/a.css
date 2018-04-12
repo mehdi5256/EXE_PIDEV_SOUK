@@ -1,0 +1,59 @@
+#a {
+    background-color: lightblue;
+}
+.btns{
+    -fx-background-color:transparent;
+}
+
+.btns:hover{
+    -fx-background-color: #20aee3;
+}
+.box{
+        -fx-border-color:#7C8184;
+        -fx-border-wdith: 1px 0px 0px 0px;
+}
+.table{
+-fx-base: #1d1d1d;
+    -fx-control-inner-background:  #cfecfe;
+    -fx-background-color:  #cfecfe;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.text{
+    -fx-text-fill: white;
+}
+
+
+
+.table-cell:hover{
+    -fx-background-color: #20aee3;
+}
+/*
+.table-view{
+   -fx-background-color: #cfecfe;
+}*/
+
+
+
+
+
+
+
+
+.espaceproduit:hover{
+    -fx-background-color: #20aee3;
+}
+.espacecategorie:hover{
+    -fx-background-color:  #24d2b5;
+}
+.imagecat:hover{
+    -fx-opacity: 0.5;
+}
+.imageprod:hover{
+   
+    -fx-opacity: 0.5;
+}
+
+

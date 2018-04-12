@@ -1,0 +1,12 @@
+.espaceproduit:hover{
+    -fx-background-color: #20aee3;
+}
+.espacecategorie:hover{
+    -fx-background-color:  #24d2b5;
+}
+.imagecat:hover{
+    -fx-opacity: 0.5;
+}
+.imageprod:hover{
+    -fx-opacity: 0.5;
+}

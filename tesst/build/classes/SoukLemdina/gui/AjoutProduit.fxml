@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="578.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SoukLemdina.Controller.AjoutProduitController">
+   <children>
+      <AnchorPane layoutX="-2.0" prefHeight="598.0" prefWidth="212.0" style="-fx-background-color: #272c33;">
+         <children>
+            <Pane prefHeight="74.0" prefWidth="200.0" style="-fx-background-color: #272c34;">
+               <children>
+                  <ImageView fitHeight="55.0" fitWidth="102.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/monlogo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="78.0" layoutY="29.0" text="SoukLemdina" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <HBox alignment="CENTER_LEFT" layoutY="114.0" prefHeight="32.0" prefWidth="200.0" styleClass="btns" stylesheets="@../images/a.css">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" fontSmoothingType="LCD" glyphName="DASHBOARD" size="20">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Label styleClass="btns" text="DASHBOARD" textFill="#fffdfd">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Forte" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="146.0" prefHeight="32.0" prefWidth="200.0" styleClass="btns" stylesheets="@../images/a.css" AnchorPane.bottomAnchor="397.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" fontSmoothingType="LCD" glyphName="FILE_ALT" size="20">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Label text="Espace Produits" textFill="#fffdfd">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Ebrima Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="205.0" prefHeight="32.0" prefWidth="200.0" styleClass="btns" stylesheets="@../images/a.css">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" fontSmoothingType="LCD" glyphName="FOLDER_ALT" size="20">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Label styleClass="btns" text="Espace Actualités" textFill="#fffdfd">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Ebrima Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="247.0" prefHeight="32.0" prefWidth="200.0" styleClass="btns" stylesheets="@../images/a.css">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" fontSmoothingType="LCD" glyphName="FILES_ALT" size="20">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Label styleClass="btns" text="Espace Evenements" textFill="#fffdfd">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Ebrima Bold" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="294.0" prefHeight="32.0" prefWidth="200.0" styleClass="btns" stylesheets="@../images/a.css">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" fontSmoothingType="LCD" glyphName="FOLDER_ALT" size="20">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Label styleClass="btns" text="Espace Boutiques" textFill="#fffdfd">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Ebrima Bold" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutY="336.0" prefHeight="32.0" prefWidth="200.0" styleClass="btns" stylesheets="@../images/a.css">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" fontSmoothingType="LCD" glyphName="FOLDER_ALT" size="20">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Label styleClass="btns" text="Espace Livraison&amp;SAV" textFill="#fffdfd">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Ebrima Bold" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets top="2.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="210.0" prefHeight="82.0" prefWidth="562.0" style="-fx-background-color: #20aee3;">
+         <children>
+            <MaterialDesignIconView fill="WHITE" glyphName="FORMAT_LIST_BULLETED" layoutX="14.0" layoutY="56.0" size="20.0" />
+            <FontAwesomeIconView fill="#fffefe" glyphName="SEARCH" layoutX="61.0" layoutY="55.0" size="20.0" />
+         </children>
+      </AnchorPane>
+      <Pane layoutX="210.0" layoutY="82.0" prefHeight="516.0" prefWidth="562.0" style="-fx-background-color: #383f48;">
+         <children>
+            <AnchorPane prefHeight="468.0" prefWidth="562.0" style="-fx-background-color: #383f48;" />
+            <Separator layoutX="-3.0" layoutY="468.0" opacity="0.35" prefHeight="4.0" prefWidth="569.0" />
+            <Label layoutX="10.0" layoutY="484.0" text="© 2018 SoukLemdina by .EXE" textFill="#ddd8d8" />
+            <AnchorPane layoutY="-6.0" prefHeight="468.0" prefWidth="562.0">
+               <children>
+                  <Label layoutX="26.0" layoutY="132.0" text="Nom produit" textFill="#f8f8f8">
+                     <font>
+                        <Font name="Ebrima Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="ajouter" layoutX="131.0" layoutY="410.0" onAction="#AjouterProduit" prefHeight="37.0" prefWidth="108.0" style="-fx-background-color: #24d2b5;" text="Ajouter" textFill="#f5f5f5" textOverrun="CLIP">
+                     <font>
+                        <Font name="Ebrima" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="30.0" layoutY="34.0" text="Ajouter un produit" textFill="#1e88e5">
+                     <font>
+                        <Font name="Ebrima Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXButton layoutX="21.0" layoutY="65.0" text="Accueil" textFill="#67757c">
+                     <font>
+                        <Font name="Ebrima Bold" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_RIGHT" layoutX="83.0" layoutY="84.0" size="17" />
+                  <Label layoutX="100.0" layoutY="70.0" text="AJOUTPRODUIT" textFill="WHITE" />
+                  <Label layoutX="31.0" layoutY="190.0" text="Description" textFill="#f8f8f8">
+                     <font>
+                        <Font name="Ebrima Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="41.0" layoutY="238.0" text="Image" textFill="#f8f8f8">
+                     <font>
+                        <Font name="Ebrima Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="41.0" layoutY="293.0" text="Prix" textFill="#f8f8f8">
+                     <font>
+                        <Font name="Ebrima Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="349.0" text="Catégorie" textFill="#f8f8f8">
+                     <font>
+                        <Font name="Ebrima Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="photoproduit" fitHeight="266.0" fitWidth="200.0" layoutX="336.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
+                  <JFXTextField fx:id="nomProduit" focusColor="#369c6704" layoutX="139.0" layoutY="127.0" prefHeight="39.0" prefWidth="169.0" promptText="Ajouter un produit" style="-fx-border-color: #272c33; -fx-background-color: white;" unFocusColor="#a14f4f01">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="description" focusColor="#369c6704" layoutX="139.0" layoutY="184.0" prefHeight="39.0" prefWidth="169.0" promptText="Description du prouit" style="-fx-border-color: #272c33; -fx-background-color: white;" unFocusColor="#a14f4f01">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="uploadimage" layoutX="139.0" layoutY="240.0" onAction="#linkImage" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: silver;" text="Insérer image produit" />
+                  <JFXTextField fx:id="prix" focusColor="#369c6704" layoutX="139.0" layoutY="288.0" prefHeight="39.0" prefWidth="169.0" promptText="Prix du produit" style="-fx-border-color: #272c33; -fx-background-color: white;" text="0" unFocusColor="#a14f4f01">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXTextField>
+                  <ChoiceBox fx:id="cbCategorie" layoutX="139.0" layoutY="350.0" prefHeight="25.0" prefWidth="169.0" />
+                  <Label fx:id="photoname" layoutX="424.0" layoutY="35.0" text="Label" visible="false" />
+                  <Label fx:id="photopath" layoutX="417.0" layoutY="62.0" text="Label" visible="false" />
+                  <JFXButton fx:id="retour" layoutX="445.0" layoutY="410.0" onAction="#RetourAction" prefHeight="37.0" prefWidth="96.0" style="-fx-background-color: #17a2b8;" text="Retour" textFill="#f5f5f5" textOverrun="CLIP">
+                     <font>
+                        <Font name="Ebrima" size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SoukLemdina.Controller.GestionBoutiquesFXMLController">
+    <children>
+      <AnchorPane prefHeight="73.0" prefWidth="200.0" style="-fx-background-color: #272c33;">
+         <children>
+            <Pane prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #272c34;">
+               <children>
+                  <ImageView fitHeight="55.0" fitWidth="102.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/monlogo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="78.0" layoutY="29.0" text="SoukLemdina" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="-9.0" prefHeight="82.0" prefWidth="562.0" style="-fx-background-color: #20aee3;">
+         <children>
+            <MaterialDesignIconView fill="WHITE" glyphName="FORMAT_LIST_BULLETED" layoutX="14.0" layoutY="56.0" size="20.0" />
+            <FontAwesomeIconView fill="#fffefe" glyphName="SEARCH" layoutX="61.0" layoutY="55.0" size="20.0" />
+         </children>
+      </AnchorPane>
+      <Pane layoutY="73.0" prefHeight="515.0" prefWidth="762.0" style="-fx-background-color: #383f48;">
+         <children>
+            <AnchorPane fx:id="pane_espace_boutique_aff_prod" layoutX="10.0" layoutY="10.0" prefHeight="515.0" prefWidth="762.0" style="-fx-background-color: #383f48;">
+               <children>
+                  <TableView fx:id="tableViewProds" layoutX="195.0" layoutY="132.0" onMouseClicked="#tableProdClick" prefHeight="200.0" prefWidth="461.0">
+                    <columns>
+                      <TableColumn fx:id="col_2_id" prefWidth="75.0" text="id" visible="false" />
+                      <TableColumn fx:id="col_2_nom" prefWidth="75.0" text="Nom" />
+                        <TableColumn fx:id="col_2_prix" prefWidth="75.0" text="Prix" />
+                        <TableColumn fx:id="col_2_descr" prefWidth="75.0" text="Description" />
+                        <TableColumn fx:id="col_2_img" prefWidth="75.0" text="Image" />
+                        <TableColumn fx:id="col_2_categorie" prefWidth="75.0" text="Categorie" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btn_retour" layoutX="561.0" layoutY="349.0" mnemonicParsing="false" onAction="#retourAction" prefHeight="25.0" prefWidth="95.0" text="Retour" />
+                  <Button fx:id="btn_acheter" layoutX="195.0" layoutY="349.0" mnemonicParsing="false" onAction="#AcheterAction" prefHeight="25.0" prefWidth="80.0" text="Acheter" />
+                  <Pane layoutX="195.0" layoutY="50.0" opacity="0.75" prefHeight="67.0" prefWidth="461.0" style="-fx-background-color: #42d4f4;">
+                     <children>
+                        <Text layoutX="22.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous etes entrain de visualiser la boutique" />
+                        <Text fx:id="lab_bout_name" layoutX="22.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" />
+                        <Text fx:id="lab_bout_desc" layoutX="22.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" />
+                     </children>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Pane>
+                  <Button fx:id="btn_afficher_commandes" layoutX="285.0" layoutY="349.0" mnemonicParsing="false" onAction="#AfficherCommandesAction" prefHeight="25.0" prefWidth="132.0" text="Afficher commandes" />
+                  <Button fx:id="btn_supprimer_commande" layoutX="426.0" layoutY="349.0" mnemonicParsing="false" onAction="#supprimerCommandeAction" prefHeight="25.0" prefWidth="95.0" text="Supprimer" visible="false" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="pane_gerer_boutique" layoutX="10.0" layoutY="10.0" prefHeight="515.0" prefWidth="762.0" style="-fx-background-color: #383f48;">
+               <children>
+                  <Accordion layoutX="188.0" layoutY="8.0" prefHeight="492.0" prefWidth="554.0">
+                    <panes>
+                        <TitledPane animated="false" text="Statistiques">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <BarChart fx:id="monBarChart" layoutX="14.0" layoutY="14.0" prefHeight="165.0" prefWidth="310.0" title="Nombre de cotégories">
+                                      <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                      </yAxis>
+                                    </BarChart>
+                                    <LineChart fx:id="lineChart" layoutX="14.0" layoutY="173.0" prefHeight="184.0" prefWidth="311.0" title="Ventes">
+                                      <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                      </yAxis>
+                                    </LineChart>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
+                      <TitledPane animated="false" text="Ajouter Produits">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableView_modif_prod1" layoutX="276.0" layoutY="14.0" onMouseClicked="#clickTableAjoutProd" prefHeight="255.0" prefWidth="200.0">
+                                       <columns>
+                                          <TableColumn fx:id="col_id_modif1" prefWidth="78.0" text="ID" />
+                                          <TableColumn fx:id="col_nom_modif1" prefWidth="121.0" text="Nom" />
+                                       </columns>
+                                    </TableView>
+                                    <TextField fx:id="champs_nom_prod" layoutX="14.0" layoutY="39.0" promptText="Nom du produit" />
+                                    <TextField fx:id="champs_prix_prod" layoutX="14.0" layoutY="83.0" promptText="Prix" />
+                                    <TextField fx:id="champs_descr_prod" layoutX="14.0" layoutY="129.0" promptText="Description" />
+                                    <ChoiceBox fx:id="choice_box_prod" layoutX="14.0" layoutY="173.0" onMouseClicked="#clickCategorie" prefWidth="150.0" />
+                                    <Button fx:id="btn_ajouter_prod" layoutX="13.0" layoutY="214.0" mnemonicParsing="false" onAction="#ajouterProdAction" prefHeight="25.0" prefWidth="151.0" text="Ajouter produit" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                      <TitledPane animated="false" text="Modifier Produits">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableView_modif_prod" layoutX="305.0" layoutY="22.0" onMouseClicked="#clickTableModifProd" prefHeight="255.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="col_id_modif" prefWidth="78.0" text="ID" />
+                                        <TableColumn fx:id="col_nom_modif" prefWidth="121.0" text="Nom" />
+                                      </columns>
+                                    </TableView>
+                                    <TextField fx:id="champs_modif_nom" layoutX="14.0" layoutY="63.0" promptText="Nom" />
+                                    <TextField fx:id="champs_modif_descr" layoutX="14.0" layoutY="105.0" promptText="Description" />
+                                    <TextField fx:id="champs_modif_prix" layoutX="14.0" layoutY="150.0" promptText="Prix" />
+                                    <Button fx:id="btn_supprimer_prod" layoutX="305.0" layoutY="286.0" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="25.0" prefWidth="95.0" text="Supprimer" />
+                                    <Button fx:id="btn_valider_modif" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onAction="#validerModifAction" prefHeight="25.0" prefWidth="149.0" text="Valider modification" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                      <TitledPane animated="false" text="Modifier Boutique">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="548.0">
+                                 <children>
+                                    <TextField fx:id="chps_modif_nom_bout" layoutX="14.0" layoutY="38.0" prefHeight="25.0" prefWidth="278.0" promptText="Nom de votre boutique" />
+                                    <TextField fx:id="chps_modif_lieu_bout" layoutX="14.0" layoutY="73.0" prefHeight="25.0" prefWidth="277.0" promptText="Lieu" />
+                                    <TextArea fx:id="chps_modif_descr_bout" layoutX="14.0" layoutY="111.0" prefHeight="200.0" prefWidth="275.0" promptText="Description" />
+                                    <Button fx:id="btn_valider_modif_bout" layoutX="14.0" layoutY="322.0" mnemonicParsing="false" onAction="#modifBoutiqueAction" prefHeight="25.0" prefWidth="276.0" text="Valider modification" />
+                                    <Label fx:id="lab_modif_boutique" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="277.0" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                    </panes>
+                  </Accordion>
+                  <Button fx:id="btn_retour1" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#retourAction" prefHeight="25.0" prefWidth="95.0" text="Retour" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="pane_espace_boutique" prefHeight="515.0" prefWidth="762.0" style="-fx-background-color: #383f48;">
+               <children>
+                  <Button fx:id="btn_gerer_ma_boutique" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#GererBoutiqueAction" text="Gérer ma boutique" />
+                  <TableView fx:id="tableView" layoutX="181.0" layoutY="94.0" onMouseClicked="#click" prefHeight="233.0" prefWidth="528.0">
+                    <columns>
+                      <TableColumn fx:id="col_id" prefWidth="75.0" text="col_id" visible="false" />
+                      <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
+                        <TableColumn fx:id="col_lieu" prefWidth="75.0" text="Lieu" />
+                        <TableColumn fx:id="col_description" prefWidth="377.0" text="Description" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btn_visiter" layoutX="181.0" layoutY="335.0" mnemonicParsing="false" onAction="#visiterBoutiqueAction" prefHeight="25.0" prefWidth="178.0" text="Visiter" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
