@@ -17,7 +17,7 @@ public class MyConnection {
     
     
     private static Connection conn;
-    private String url="jdbc:mysql://localhost:3306/pi";
+    private String url="jdbc:mysql://localhost:3306/symfonysouk";
     private String login="root";
     private String password="";
     private MyConnection()
