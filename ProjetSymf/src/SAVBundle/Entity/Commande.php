@@ -22,25 +22,56 @@ class Commande
     private $id;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="livreur", type="string", length=255)
-     */
-    private $livreur;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="produit", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="GestionBoutiquesBundle\Entity\ProduitBoutique")
+     * @ORM\JoinColumn(name="produit_id", referencedColumnName="id")
      */
     private $produit;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="TestBundle\Entity\User")
+     * @ORM\JoinColumn(name="clientRef", referencedColumnName="id")
+     */
+    private $clientRef;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="TestBundle\Entity\User")
+     * @ORM\JoinColumn(name="vendeurRef", referencedColumnName="id")
+     */
+    private $vendeurRef;
+
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreation", type="date")
+     * @ORM\Column(name="date_commande", type="date")
      */
-    private $dateCreation;
+    private $dateCommande;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="plusLivraison", type="boolean")
+     */
+    private $plusLivraison;
+
+    /**
+     * @return mixed
+     */
+    public function getProduit()
+    {
+        return $this->produit;
+    }
+
+    /**
+     * @param mixed $produit
+     */
+    public function setProduit($produit)
+    {
+        $this->produit = $produit;
+    }
 
 
     /**
@@ -52,77 +83,104 @@ class Commande
     {
         return $this->id;
     }
-
     /**
-     * Set livreur
+     * Set clientRef
      *
-     * @param string $livreur
+     * @param integer $clientRef
      *
      * @return Commande
      */
-    public function setLivreur($livreur)
+    public function setClientRef($clientRef)
     {
-        $this->livreur = $livreur;
+        $this->clientRef = $clientRef;
 
         return $this;
     }
 
     /**
-     * Get livreur
+     * Get clientRef
      *
-     * @return string
+     * @return int
      */
-    public function getLivreur()
+    public function getClientRef()
     {
-        return $this->livreur;
+        return $this->clientRef;
     }
 
     /**
-     * Set produit
+     * Set vendeurRef
      *
-     * @param string $produit
+     * @param integer $vendeurRef
      *
      * @return Commande
      */
-    public function setProduit($produit)
+    public function setVendeurRef($vendeurRef)
     {
-        $this->produit = $produit;
+        $this->vendeurRef = $vendeurRef;
 
         return $this;
     }
 
     /**
-     * Get produit
+     * Get vendeurRef
      *
-     * @return string
+     * @return int
      */
-    public function getProduit()
+    public function getVendeurRef()
     {
-        return $this->produit;
+        return $this->vendeurRef;
     }
 
+
     /**
-     * Set dateCreation
+     * Set dateCommande
      *
-     * @param \DateTime $dateCreation
+     * @param \DateTime $dateCommande
      *
      * @return Commande
      */
-    public function setDateCreation($dateCreation)
+    public function setDateCommande($dateCommande)
     {
-        $this->dateCreation = $dateCreation;
+        $this->dateCommande = $dateCommande;
 
         return $this;
     }
 
     /**
-     * Get dateCreation
+     * Get dateCommande
      *
      * @return \DateTime
      */
-    public function getDateCreation()
+    public function getDateCommande()
     {
-        return $this->dateCreation;
+        return $this->dateCommande;
     }
-}
 
+
+
+    /**
+     * Get plusLivraison
+     *
+     * @return bool
+     */
+    public function getPlusLivraison()
+    {
+        return $this->plusLivraison;
+    }
+
+    /**
+     * Set plusLivraison
+     *
+     * @param boolean $plusLivraison
+     *
+     * @return Commande
+     */
+    public function setPlusLivraison($plusLivraison)
+    {
+        $this->plusLivraison = $plusLivraison;
+
+        return $this;
+    }
+
+
+}

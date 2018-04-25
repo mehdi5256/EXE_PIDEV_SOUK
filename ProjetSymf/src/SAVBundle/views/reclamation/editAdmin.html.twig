@@ -1,0 +1,22 @@
+{% extends '@SAV/layout.html.twig' %}
+{% block content %}
+    {% block body %}
+        <h1>Modifier réclamation</h1>
+
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+        {{ form_end(edit_form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('sav_admin_reclamation_index') }}">Test Backend</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    {% endblock %}
+{% endblock %}

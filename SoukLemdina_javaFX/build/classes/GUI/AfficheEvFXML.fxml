@@ -12,7 +12,7 @@
       <JFXListView fx:id="ListView_Produits1" layoutX="882.0" layoutY="97.0" prefHeight="291.0" prefWidth="110.0" />
       <HBox layoutX="14.0" layoutY="35.0" prefHeight="65.0" prefWidth="1027.0">
          <children>
-            <JFXTextField promptText="rechercher" />
+            <JFXTextField promptText="search" />
             <FontAwesomeIconView glyphName="SEARCH" size="15" />
          </children>
       </HBox>

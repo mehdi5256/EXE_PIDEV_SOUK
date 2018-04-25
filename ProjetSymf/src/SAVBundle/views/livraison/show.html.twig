@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+{% block body %}
+    <h1>Livraison</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Datelivraison</th>
+                <td>{% if livraison.dateLivraison %}{{ livraison.dateLivraison|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ livraison.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('SAV_livraison_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('SAV_livraison_edit', { 'id': livraison.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+{% endblock %}

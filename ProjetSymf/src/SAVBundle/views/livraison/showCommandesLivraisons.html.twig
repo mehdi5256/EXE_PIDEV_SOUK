@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+{% block body %}
+    <h1>Commandes en Attente de Livraison </h1>
+
+    <table id="customers">
+        <thead>
+        <tr>
+            <th>Datecommande</th>
+            <th>Produit</th>
+            <th>Vendeur</th>
+            <th>Demander</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+        <tr>
+            <td>{% if commande.dateCommande %}{{ commande.dateCommande|date('Y-m-d') }}{% endif %}</td>
+            <td>{{ commande.produit.nomProduit}}</td>
+            <td>{{ commande.vendeurRef.nom}} {{ commande.vendeurRef.prenom}}</td>
+            <td><a href="{{ path('sav_livraison_new', { 'id': commande.id }) }}">Demander livraison</a></td>
+        </tr>
+        {%  endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% endblock %}

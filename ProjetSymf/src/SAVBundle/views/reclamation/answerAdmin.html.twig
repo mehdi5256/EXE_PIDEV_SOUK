@@ -1,0 +1,80 @@
+{% extends 'SAVBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Reclamation</h1>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Sujet</th>
+                            <td>{{ reclamation.sujet}}</td>
+                        </tr>
+                        <tr>
+                            <th>Contenu</th>
+                            <td>{{ reclamation.contenu }}</td>
+                        </tr>
+                        <tr>
+                            <th>Etat</th>
+                            <td>{{ reclamation.etat }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <td>{% if reclamation.date %}{{ reclamation.date|date('Y-m-d') }}{% endif %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('SAV_reclamation_index') }}">Back to Reclamation List</a>
+        </li>
+    </ul>
+    <div >
+        <div class="chat-main-box">
+            <div class="chat-rbox">
+                <ul class="chat-list p-20">
+                    <!-- .chat-right-panel -->
+                    <div class="chat-right-aside">
+                        <div class="chat-main-header">
+                            <div class="p-20 b-b">
+                                <h3 class="box-title">Answer Reclamation </h3>
+                            </div>
+                        </div>
+                        <div class="chat-rbox">
+                            <ul class="chat-list p-20">
+
+                            </ul>
+                        </div>
+                        <div class="card-body b-t">
+                            <div class="row">
+                                <div class="col-8">
+                                    <form method="post">
+                                    <textarea placeholder="Type your message here" class="form-control b-0" name="answer"></textarea>
+                                </div>
+                                <div class="col-4 text-right">
+
+                                    <button type="submit" class="btn btn-info btn-circle btn-lg">
+                                        <i class="fa fa-paper-plane-o"> </i>
+                                    </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .chat-right-panel -->
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

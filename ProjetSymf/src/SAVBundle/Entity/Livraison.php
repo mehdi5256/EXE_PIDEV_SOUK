@@ -3,6 +3,11 @@
 namespace SAVBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Livraison
@@ -22,39 +27,39 @@ class Livraison
     private $id;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="commande", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="SAVBundle\Entity\Commande")
+     * @ORM\JoinColumn(name="commandeRef", referencedColumnName="id")
      */
-    private $commande;
+    private $commandeRef;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="livreur", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="TestBundle\Entity\User")
+     * @ORM\JoinColumn(name="livreurRef", referencedColumnName="id", nullable=true)
      */
-    private $livreur;
+    private $livreurRef;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="dateCreation", type="date")
+     * Assert\GreaterThan("today", message"Date non valide")
+     * @ORM\Column(name="date_livraison", type="datetime")
      */
-    private $dateCreation;
+    private $dateLivraison;
+
+    /**
+     * @var $adresse
+     * @ORM\OneToOne(targetEntity="SAVBundle\Entity\FullAdress")
+     * @ORM\JoinColumn(name="adresse", referencedColumnName="id")
+     */
+    private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="addresse", type="string", length=255)
+     * @ORM\Column(name="etat", type="string", length=255)
      */
-    private $addresse;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="age", type="integer")
-     */
-    private $age;
+    private $etat;
 
 
     /**
@@ -68,123 +73,146 @@ class Livraison
     }
 
     /**
-     * Set commande
+     * Set commandeRef
      *
-     * @param string $commande
+     * @param integer $commandeRef
      *
      * @return Livraison
      */
-    public function setCommande($commande)
+    public function setCommandeRef($commandeRef)
     {
-        $this->commande = $commande;
+        $this->commandeRef = $commandeRef;
 
         return $this;
     }
 
     /**
-     * Get commande
-     *
-     * @return string
-     */
-    public function getCommande()
-    {
-        return $this->commande;
-    }
-
-    /**
-     * Set livreur
-     *
-     * @param string $livreur
-     *
-     * @return Livraison
-     */
-    public function setLivreur($livreur)
-    {
-        $this->livreur = $livreur;
-
-        return $this;
-    }
-
-    /**
-     * Get livreur
-     *
-     * @return string
-     */
-    public function getLivreur()
-    {
-        return $this->livreur;
-    }
-
-    /**
-     * Set dateCreation
-     *
-     * @param \DateTime $dateCreation
-     *
-     * @return Livraison
-     */
-    public function setDateCreation($dateCreation)
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateCreation
-     *
-     * @return \DateTime
-     */
-    public function getDateCreation()
-    {
-        return $this->dateCreation;
-    }
-
-    /**
-     * Set addresse
-     *
-     * @param string $addresse
-     *
-     * @return Livraison
-     */
-    public function setAddresse($addresse)
-    {
-        $this->addresse = $addresse;
-
-        return $this;
-    }
-
-    /**
-     * Get addresse
-     *
-     * @return string
-     */
-    public function getAddresse()
-    {
-        return $this->addresse;
-    }
-
-    /**
-     * Set age
-     *
-     * @param integer $age
-     *
-     * @return Livraison
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
+     * Get commandeRef
      *
      * @return int
      */
-    public function getAge()
+    public function getCommandeRef()
     {
-        return $this->age;
+        return $this->commandeRef;
+    }
+
+    /**
+     * Set livreurRef
+     *
+     * @param integer $livreurRef
+     *
+     * @return Livraison
+     */
+    public function setLivreurRef($livreurRef)
+    {
+        $this->livreurRef = $livreurRef;
+
+        return $this;
+    }
+
+    /**
+     * Get livreurRef
+     *
+     * @return int
+     */
+    public function getLivreurRef()
+    {
+        return $this->livreurRef;
+    }
+
+    /**
+     * Set dateLivraison
+     *
+     * @param \DateTime $dateLivraison
+     *
+     * @return Livraison
+     */
+    public function setDateLivraison($dateLivraison)
+    {
+        $this->dateLivraison = $dateLivraison;
+
+        return $this;
+    }
+
+    /**
+     * Get dateLivraison
+     *
+     * @return \DateTime
+     */
+    public function getDateLivraison()
+    {
+        return $this->dateLivraison;
+    }
+
+    /**
+     * Set fullAdress
+     *
+     * @param string $fullAdress
+     *
+     * @return Livraison
+     */
+    public function setFullAdress($fullAdress)
+    {
+        $this->fullAdress = $fullAdress;
+
+        return $this;
+    }
+
+    /**
+     * Get fullAdress
+     *
+     * @return string
+     */
+    public function getFullAdress()
+    {
+        return $this->fullAdress;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param string $etat
+     *
+     * @return Livraison
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return string
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \SAVBundle\Entity\FullAdress $adresse
+     *
+     * @return Livraison
+     */
+    public function setAdresse(\SAVBundle\Entity\FullAdress $adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \SAVBundle\Entity\FullAdress
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
     }
 }
-
