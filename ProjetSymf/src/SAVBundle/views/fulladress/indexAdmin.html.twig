@@ -1,0 +1,54 @@
+{% extends '@SAV/layout.html.twig' %}
+{% block content %}
+    {% block body %}
+        <!-- column -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Liste des adresses de livraison </h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Rue</th>
+                                <th>Numéro</th>
+                                <th>Ville</th>
+                                <th>Code postal</th>
+                                <th>Pays</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for fullAdress in fullAdresses %}
+                                <tr>
+                                    <td><a href="{{ path('fos_user_profile_show', { 'id': fullAdress.idUser }) }}">{{ fullAdress.idUser }}</a></td>
+                                    <td>{{ fullAdress.rue }}</td>
+                                    <td>{{ fullAdress.numMaison }}</td>
+                                    <td>{{ fullAdress.ville }}</td>
+                                    <td>{{ fullAdress.codePostal }}</td>
+                                    <td>{{ fullAdress.pays }}</td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('SAV_fullAdress_show', { 'id': fullAdress.id }) }}">show</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('sav_FullAdress_edit', { 'id': fullAdress.id }) }}">edit</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('SAV_fullAdress_delete', { 'id': fullAdress.id }) }}">delete</a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

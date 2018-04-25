@@ -1,6 +1,7 @@
 <?php
 
 namespace SAVBundle\Repository;
+use SAVBundle\Entity\Livraison;
 
 /**
  * LivraisonRepository
@@ -10,4 +11,15 @@ namespace SAVBundle\Repository;
  */
 class LivraisonRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return Livraison[]
+     */
+    public function findAllNotFinished()
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.etat != :etat')
+            ->setParameter('etat', 100)
+            ->getQuery()
+            ->execute();
+    }
 }

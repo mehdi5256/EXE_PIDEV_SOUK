@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+{% block body %}
+    <h1>Votre demande a été envoyée avec succés </h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Date d'envoi de la demande </th>
+                <td>{% if demandeLivreur.dateInscription %}{{ demandeLivreur.dateInscription|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Vehicule</th>
+
+                <td>
+               {{ demandeLivreur.vehicule }}
+                </td>
+
+            </tr>
+            <tr>
+                <th>Disponibilite</th>
+                {% for d in demandeLivreur.disponibilite %}
+                <td>
+                        {% if d==2 %}
+                    <span> Mardi </span><br>
+                    {% elseif d==3 %}
+                    <span> Mercredi </span><br>
+                    {% elseif d==4 %}
+                    <span> Jeudi </span><br>
+                    {% elseif d==5 %}
+                    <span> Vendredi </span><br>
+                    {% elseif d==6 %}
+                    <span> Samedi </span><br>
+                    {% elseif d==7 %}
+                    <span> Dimanche </span><br>
+                    {% elseif d==1 %}
+                    <span> Lundi </span><br>
+                    {%  endif %}
+                </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
+{% endblock %}

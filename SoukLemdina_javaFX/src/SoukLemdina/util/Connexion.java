@@ -15,7 +15,7 @@ import java.sql.DriverManager;
  */
 public class Connexion {
     public static Connexion conn;
-        String url = "jdbc:mysql://localhost:3306/pi" ;
+        String url = "jdbc:mysql://localhost:3306/symfonysouk" ;
         String login ="root";
         String pw1="";
         public Connection  cnx;

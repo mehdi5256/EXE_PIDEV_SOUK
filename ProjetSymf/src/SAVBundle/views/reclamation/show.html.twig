@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+{% block body %}
+    <h1>Reclamation</h1>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+        <tbody>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ reclamation.sujet }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ reclamation.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ reclamation.etat }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if reclamation.date %}{{ reclamation.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Réponse</th>
+                <td>{{ reclamation.answer }}</td>
+            </tr>
+        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <ul>
+        <li>
+            <a href="{{ path('SAV_reclamation_index') }}">Mes réclamations</a>
+        </li>
+    </ul>
+{% endblock %}
+{% endblock %}
