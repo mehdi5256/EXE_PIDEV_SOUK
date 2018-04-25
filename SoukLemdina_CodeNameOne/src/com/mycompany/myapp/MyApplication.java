@@ -9,6 +9,7 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
+import com.mycompany.gui.gui_Categorie;
 import java.io.IOException;
 
 /**
@@ -31,13 +32,12 @@ public class MyApplication {
     }
     
     public void start() {
-        if(current != null){
+         if (current != null) {
             current.show();
             return;
         }
-        Form hi = new Form("Hi World");
-        hi.addComponent(new Label("Hi World"));
-        hi.show();
+        gui_Categorie h = new gui_Categorie();
+        h.getF().show();
     }
 
     public void stop() {
