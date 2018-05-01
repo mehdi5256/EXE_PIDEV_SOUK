@@ -10,6 +10,7 @@ import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
 import com.mycompany.gui.gui_Categorie;
+import com.mycompany.gui.gui_Produit;
 import java.io.IOException;
 
 /**
@@ -36,7 +37,7 @@ public class MyApplication {
             current.show();
             return;
         }
-        gui_Categorie h = new gui_Categorie();
+        gui_Produit h = new gui_Produit();
         h.getF().show();
     }
 

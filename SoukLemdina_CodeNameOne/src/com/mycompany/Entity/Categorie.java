@@ -5,6 +5,8 @@
  */
 package com.mycompany.Entity;
 
+import java.util.List;
+
 /**
  *
  * @author Mehdi
@@ -12,6 +14,8 @@ package com.mycompany.Entity;
 public class Categorie {
     private int id ; 
     private String nomCategorie ; 
+    private List<Produit> produitList;
+
 
     public Categorie() {
     }
@@ -20,6 +24,8 @@ public class Categorie {
         this.id = id;
         this.nomCategorie = nomCategorie;
     }
+
+   
 
     public int getId() {
         return id;
@@ -41,6 +47,21 @@ public class Categorie {
     public String toString() {
         return "Categorie{" + "id=" + id + ", nomCategorie=" + nomCategorie + '}';
     }
+
+    public Categorie(String nomCategorie) {
+        this.nomCategorie = nomCategorie;
+    }
+
+    public List<Produit> getProduitList() {
+        return produitList;
+    }
+
+    public void setProduitList(List<Produit> produitList) {
+        this.produitList = produitList;
+    }
+
+        
+    
     
     
 }
