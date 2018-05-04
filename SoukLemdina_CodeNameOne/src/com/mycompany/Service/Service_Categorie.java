@@ -41,6 +41,7 @@ public class Service_Categorie {
      public ArrayList<Categorie> getListTask(String json) {
 
         ArrayList<Categorie> listEtudiants = new ArrayList<>();
+        
 
         try {
             System.out.println(json);
@@ -55,9 +56,9 @@ public class Service_Categorie {
                 Categorie e = new Categorie();
 
                 // System.out.println(obj.get("id"));
-                float id = Float.parseFloat(obj.get("id").toString());
-                System.out.println(id);
-                e.setId((int) id);
+//                float id = Float.parseFloat(obj.get("id").toString());
+//                System.out.println(id);
+//                e.setId((int) id);
                 //e.setId(Integer.parseInt(obj.get("id").toString().trim()));
                 e.setNomCategorie(obj.get("nomCategorie").toString());
 //                e.setNom(obj.get("name").toString());
@@ -68,8 +69,9 @@ public class Service_Categorie {
 
         } catch (IOException ex) {
         }
-        System.out.println(listEtudiants);
+         System.out.println(listEtudiants);
         return listEtudiants;
+        
 
     }
      

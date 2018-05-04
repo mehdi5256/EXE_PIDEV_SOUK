@@ -21,6 +21,8 @@ public class Produit {
     public int rating;  
     public int solde; 
 
+   
+
     
 
     public int getId() {

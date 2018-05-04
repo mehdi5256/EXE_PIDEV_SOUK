@@ -13,9 +13,9 @@ import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.Entity.Categorie;
 import com.mycompany.Entity.Produit;
-import com.sun.javafx.image.impl.IntArgb;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +27,7 @@ public class Service_Produit {
     
     public void ajoutProduit(Produit pr) {
          ConnectionRequest con = new ConnectionRequest();
-        String Url = " http://localhost/externe/web/app_dev.php/mehdi/newp?name=" + pr.getNomProduit() + "&"+pr.getDescription()+"&"+pr.getImage()+"&"+pr.getCategorie().getId()+"&"+pr.getPrix();
+        String Url = "http://localhost/externe/web/app_dev.php/mehdi/prod?nomProduit=" + pr.getNomProduit() + "&descrition="+pr.getDescription()+"&image="+pr.getImage()+"&nomCategorie="+pr.getCategorie().getId()+"&prix="+pr.getPrix();
         con.setUrl(Url);
 
        con.addResponseListener((e) -> {
@@ -54,7 +54,8 @@ public class Service_Produit {
             for (Map<String, Object> obj : list) {
                 Produit e = new Produit();
               Categorie c = new Categorie();
-              c.setNomCategorie(obj.get("nomCategorie").toString());
+//              c.setNomCategorie(obj.get("nomCategorie").toString());
+              
 
                 // System.out.println(obj.get("id"));
 //                float id = Float.parseFloat(obj.get("id").toString());
@@ -67,9 +68,13 @@ public class Service_Produit {
 //             e.categorie.setNomCategorie(obj.get("nomCategorie").toString());
 //           e.setCategorie(c.getNomCategorie(obj.get("nomCategorie").toString()));
 //                e.setCategorie(c.getNomCategorie(obj.get("nomCategoire").toString()));
-                e.setCategorie(c);
-                
                e.setPrix(Float.parseFloat(obj.get("prix").toString()));
+              
+              Map<String, Object> categoryMap = (Map<String, Object>) obj.get("categorie");
+              c.setNomCategorie(categoryMap.get("nomCategorie").toString());
+                
+               e.setCategorie(c);
+               
                 
 //                e.setNom(obj.get("name").toString());
 
@@ -83,7 +88,7 @@ public class Service_Produit {
 
         } catch (IOException ex) {
         }
-        System.out.println(listProduit);
+       
         return listProduit;
 
     }
