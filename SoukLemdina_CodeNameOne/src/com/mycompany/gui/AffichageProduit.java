@@ -144,7 +144,7 @@ public class AffichageProduit extends MyApplication{
                 
                 msg.setText("Une demande d'acheter le produit " + l2.getText());
                 SMTPTransport st = (SMTPTransport)session.getTransport("smtps");
-                st.connect("smtp.gmail.com","mehdi.drira@esprit.tn","aA09625531");
+                st.connect("smtp.gmail.com","mehdi.drira@esprit.tn","");
                 st.sendMessage(msg, msg.getAllRecipients());
                 System.out.println("ServerResponse : " + st.getLastServerResponse());
                      Dialog.show("Mail envoyé avec succés", "Le propriaitaire du produit va reçevoir un mail","OK",null);
