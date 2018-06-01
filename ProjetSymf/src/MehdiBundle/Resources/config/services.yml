@@ -1,4 +1,0 @@
-services:
-#    mehdi.example:
-#        class: MehdiBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]

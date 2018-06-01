@@ -1,7 +1,0 @@
-actualite_a:
-    resource: "@ActualiteBundle/Resources/config/routing/actualite.yml"
-    prefix:   /
-
-actualite_admin_homepage:
-    path:     /admin
-    defaults: { _controller: ActualiteBundle:Default:index }
